@@ -1,3 +1,3 @@
 module Alfred
-  VERSION = "0.0.1"
+  VERSION = "2.0.0.alpha.1"
 end
