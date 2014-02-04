@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Alfred::Cli do
   describe '#run' do
     context 'with a task name' do
-      let(:dummy_task) { DummyTask = Class.new(Alfred::Task) }
+      let(:dummy_task) { DummyTask }
       let(:argv)       { %w[dummy] }
 
       before do
@@ -15,8 +15,8 @@ describe Alfred::Cli do
     end
 
     context 'without a task name' do
-      let(:argv) { [] }
-      before { subject.should_receive(:print_help) }
+      let(:argv)            { [] }
+      before                { subject.should_receive(:print_help) }
       it('prints the help') { subject.run argv }
     end
   end
