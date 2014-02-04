@@ -14,7 +14,7 @@ module Alfred
     def build_task(argv)
       task_name = argv.first
 
-      "#{task_name}_task".camelize.constantize.new
+      Task.from_name(task_name).new
     end
 
     def print_help
