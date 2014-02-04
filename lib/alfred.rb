@@ -7,3 +7,4 @@ end
 
 require 'alfred/cli'
 require 'alfred/task'
+require 'alfred/assure'

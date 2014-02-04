@@ -1,7 +1,10 @@
+require 'alfred/task/class_methods'
+
 module Alfred
   class Task
-    def initialize
 
+    class << self
+      include ClassMethods
     end
 
     def run
