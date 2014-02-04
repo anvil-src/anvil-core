@@ -1,1 +1,3 @@
-class DummyTask < Alfred::Task; end
+class DummyTask < Alfred::Task
+  def run; end
+end

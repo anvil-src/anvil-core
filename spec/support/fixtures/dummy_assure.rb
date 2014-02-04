@@ -1,1 +1,3 @@
-class DummyAssure < Alfred::Assure; end
+class DummyAssure < Alfred::Assure
+  def assured?; true; end
+end
