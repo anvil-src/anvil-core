@@ -12,7 +12,7 @@ describe Alfred::Config do
 
   context 'with a config file' do
     let(:test_config_path) do
-      File.expand_path('../support/dot_alfred', File.dirname(__FILE__))
+      File.expand_path('./spec/support/dot_alfred', File.dirname(__FILE__))
     end
 
     before do

@@ -14,7 +14,7 @@ module Alfred
       end
 
       def init
-        self.from_file base_config_path
+        from_file base_config_path
       end
     end
   end

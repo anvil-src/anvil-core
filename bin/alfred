@@ -4,4 +4,5 @@ require 'rubygems'
 require 'bundler/setup'
 require 'alfred'
 
+Alfred::Config.init
 Alfred::Cli.new.run ARGV

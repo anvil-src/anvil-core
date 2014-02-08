@@ -6,6 +6,7 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require 'byebug'
+require 'fakefs/spec_helpers'
 require 'alfred'
 
 Dir["#{File.dirname(__FILE__)}/support/fixtures/*.rb"].each { |f| require f }
@@ -20,4 +21,5 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = 'random'
+  config.include FakeFS::SpecHelpers
 end
