@@ -7,7 +7,7 @@ describe Alfred::Cli do
       let(:argv)       { %w[dummy] }
 
       before do
-        dummy_task.should_receive(:new).and_call_original
+        dummy_task.should_receive(:new).with({}).and_call_original
         subject.should_not_receive(:print_help)
       end
 

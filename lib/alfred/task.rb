@@ -4,6 +4,12 @@ module Alfred
   class Task
     extend ClassMethods
 
+    attr_reader :options
+
+    def initialize(options = {})
+      @options = options
+    end
+
     def run
       if run_assures
         run_before_callbacks

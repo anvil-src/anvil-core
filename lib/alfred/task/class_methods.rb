@@ -1,3 +1,5 @@
+require 'optparse'
+
 module Alfred
   class Task
     module ClassMethods
@@ -31,6 +33,10 @@ module Alfred
         camelized_namespace = "#{namespaced_task.shift}".camelize
 
         "#{camelized_namespace}::#{camelized_task}".constantize
+      end
+
+      def parse_options(arguments)
+        {}
       end
 
       protected
