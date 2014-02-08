@@ -2,10 +2,7 @@ require 'alfred/task/class_methods'
 
 module Alfred
   class Task
-
-    class << self
-      include ClassMethods
-    end
+    extend ClassMethods
 
     def run
       if run_assures
