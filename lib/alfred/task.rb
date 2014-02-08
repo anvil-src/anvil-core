@@ -4,6 +4,12 @@ module Alfred
   class Task
     extend ClassMethods
 
+    attr_reader :options
+
+    def initialize(options = {})
+      @options = options
+    end
+
     def run
       if run_assures
         run_before_callbacks
@@ -15,7 +21,9 @@ module Alfred
     protected
 
     def run_after_callbacks
-      self.class.afters.map(&:new).map(&:run)
+      self.class.afters.each do |after|
+        after[0].new(after[1]).run
+      end
     end
 
     def run_assures
@@ -23,7 +31,9 @@ module Alfred
     end
 
     def run_before_callbacks
-      self.class.befores.map(&:new).map(&:run)
+      self.class.befores.each do |before|
+        before[0].new(before[1]).run
+      end
     end
 
     def run_task

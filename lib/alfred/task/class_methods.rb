@@ -1,3 +1,5 @@
+require 'optparse'
+
 module Alfred
   class Task
     module ClassMethods
@@ -13,16 +15,16 @@ module Alfred
         @assures ||= []
       end
 
-      def after(task_name)
-        afters << from_name(task_name)
+      def after(task_name, options = {})
+        afters << [from_name(task_name), options]
       end
 
       def assure(assure_name)
         assures << Assure.from_name(assure_name)
       end
 
-      def before(task_name)
-        befores << from_name(task_name)
+      def before(task_name, options = {})
+        befores << [from_name(task_name), options]
       end
 
       def from_name(task_name)
@@ -31,6 +33,10 @@ module Alfred
         camelized_namespace = "#{namespaced_task.shift}".camelize
 
         "#{camelized_namespace}::#{camelized_task}".constantize
+      end
+
+      def parse_options(arguments)
+        {}
       end
 
       protected
