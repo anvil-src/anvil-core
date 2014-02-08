@@ -1,4 +1,5 @@
 require 'mixlib/config'
+require 'alfred/config/class_methods'
 
 module Alfred
   module Config
@@ -10,21 +11,7 @@ module Alfred
     end
 
     class << self
-      def base_path
-        "~/.alfred"
-      end
-
-      def base_tasks_path
-        "#{base_path}/tasks"
-      end
-
-      def base_config_path
-        "#{base_path}/config.rb"
-      end
-
-      def init
-        self.from_file base_config_path
-      end
+      include Alfred::Config::ClassMethods
     end
   end
 end
