@@ -4,18 +4,23 @@ describe Alfred::Config do
   subject { Alfred::Config }
   before  { Alfred::Config.reset }
 
-  its(:base_config_path) { should eq('~/.alfred') }
-  its(:base_config_file) { should eq('~/.alfred/config.rb') }
-  its(:base_tasks_path)  { should eq('~/.alfred/tasks')}
+  its(:base_path)       { should eq('~/.alfred') }
+  its(:base_tasks_path) { should eq('~/.alfred/tasks')}
+
+  its("github.user")  { should be_nil }
+  its("github.token") { should be_nil }
 
   context 'with a config file' do
-    before do
-      Alfred::Config
-        .from_file(File.expand_path('../support/others/test_config.rb',
-                                    File.dirname(__FILE__)))
+    let(:test_config_path) do
+      File.expand_path('../support/dot_alfred', File.dirname(__FILE__))
     end
 
-    its(:base_config_path) { should eq('../support/dot_alfred') }
-    its(:base_tasks_path)  { should eq('../support/dot_alfred/tasks') }
+    before do
+      Alfred::Config.stub(:base_path).and_return(test_config_path)
+      Alfred::Config.init
+    end
+
+    its("github.user")  { should eq('dummy_user') }
+    its("github.token") { should eq('dummy_token') }
   end
 end
