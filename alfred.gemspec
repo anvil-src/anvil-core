@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   # Runtime dependencies
   spec.add_runtime_dependency     'git'
   spec.add_runtime_dependency     'activesupport', '~> 4.0'
+  spec.add_runtime_dependency     'mixlib-config', '~> 2.1.0'
 
   # Development dependencies
   spec.add_development_dependency 'bundler', '~> 1.5'
