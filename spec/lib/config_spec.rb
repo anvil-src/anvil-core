@@ -22,7 +22,7 @@ describe Alfred::Config do
   end
 
   context '.init_base_path' do
-    before { Alfred::Config.send :init_base_path }
+    before  { Alfred::Config.send :init_base_path }
     subject { File }
 
     it { should be_directory(Alfred::Config.base_path) }

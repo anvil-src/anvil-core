@@ -26,7 +26,17 @@ module Alfred
       end
 
       def from_name(task_name)
-        "#{task_name}_task".camelize.constantize
+        namespaced_task     = get_namespace task_name
+        camelized_task      = "#{namespaced_task.pop}_task".camelize
+        camelized_namespace = "#{namespaced_task.shift}".camelize
+
+        "#{camelized_namespace}::#{camelized_task}".constantize
+      end
+
+      protected
+
+      def get_namespace(task_name)
+        task_name.to_s.split ':'
       end
     end
   end
