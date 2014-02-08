@@ -78,4 +78,11 @@ describe Alfred::Task do
       end
     end
   end
+
+  describe '.run' do
+    it 'calls run in a instance of the task' do
+      dummy_task.any_instance.should_receive(:run)
+      dummy_task.run(1, 2)
+    end
+  end
 end
