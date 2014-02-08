@@ -5,12 +5,13 @@ describe Alfred::Task do
   let(:after_task)  { DummyAfterTask }
   let(:before_task) { DummyBeforeTask }
   let(:assure)      { DummyAssure }
+  let(:arguments)   { { argument: 'value' } }
 
   describe '.after' do
-    before { dummy_task.class_eval { after :dummy_after } }
+    before { dummy_task.class_eval { after :dummy_after, argument: 'value' } }
 
     it 'adds DummyBeforeTask to the after callbacks' do
-      dummy_task.afters.should include(after_task)
+      dummy_task.afters.should include([after_task, arguments])
     end
   end
 
@@ -23,10 +24,12 @@ describe Alfred::Task do
   end
 
   describe '.before' do
-    before { dummy_task.class_eval { before :dummy_before } }
+    before do
+      dummy_task.class_eval { before :dummy_before, argument: 'value' }
+    end
 
     it 'adds DummyBeforeTask to the before callbacks' do
-      dummy_task.befores.should include(before_task)
+      dummy_task.befores.should include([before_task, arguments])
     end
   end
 

@@ -12,11 +12,9 @@ module Alfred
     def build_task(argv)
       arguments = argv.dup
       task_name = arguments.shift
+      klazz     = Task.from_name(task_name)
 
-      klazz   = Task.from_name(task_name)
-      options = klazz.parse_options arguments
-
-      klazz.new options
+      klazz.new klazz.parse_options(arguments)
     end
 
     def print_help

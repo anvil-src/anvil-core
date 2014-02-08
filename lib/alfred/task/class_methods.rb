@@ -15,16 +15,16 @@ module Alfred
         @assures ||= []
       end
 
-      def after(task_name)
-        afters << from_name(task_name)
+      def after(task_name, options = {})
+        afters << [from_name(task_name), options]
       end
 
       def assure(assure_name)
         assures << Assure.from_name(assure_name)
       end
 
-      def before(task_name)
-        befores << from_name(task_name)
+      def before(task_name, options = {})
+        befores << [from_name(task_name), options]
       end
 
       def from_name(task_name)
