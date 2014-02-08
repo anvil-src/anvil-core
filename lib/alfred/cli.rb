@@ -9,8 +9,6 @@ module Alfred
       end
     end
 
-    protected
-
     def build_task(argv)
       arguments = argv.dup
       task_name = arguments.shift
