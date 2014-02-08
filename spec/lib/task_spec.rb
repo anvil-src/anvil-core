@@ -40,7 +40,7 @@ describe Alfred::Task do
     subject { dummy_task.new }
 
     context 'with a passing assure' do
-      before { dummy_task.class_eval { assure :dummy } }
+      before { dummy_task.stub(:assures).and_return([DummyAssure]) }
 
       it 'runs the callbacks and the task' do
         subject.should_receive(:run_before_callbacks)
@@ -51,7 +51,7 @@ describe Alfred::Task do
     end
 
     context 'with a non passing assure' do
-      before { dummy_task.class_eval { assure :dummy_failed } }
+      before { dummy_task.stub(:assures).and_return([DummyFailedAssure]) }
 
       it 'does not run the callbacks or the task' do
         subject.should_not_receive(:run_before_callbacks)
