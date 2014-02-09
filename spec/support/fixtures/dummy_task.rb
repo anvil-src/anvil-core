@@ -1,9 +1,9 @@
 class DummyTask < Alfred::Task
 
-  def initialize(arg1 = nil, arg2 = nil, options = {})
-    @arg1 = arg1
-    @arg2 = arg2
-    @options = options
+  def initialize(*args)
+    @options = args.extract_options!
+    @arg1 = args[0]
+    @arg2 = args[1]
   end
 
   def task; end
