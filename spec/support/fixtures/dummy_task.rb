@@ -1,4 +1,11 @@
 class DummyTask < Alfred::Task
+
+  def initialize(arg1 = nil, arg2 = nil, options = {})
+    @arg1 = arg1
+    @arg2 = arg2
+    @options = options
+  end
+
   def task; end
 
   def self.parse_options(arguments)
@@ -10,6 +17,7 @@ class DummyTask < Alfred::Task
       end.parse! arguments
     end
 
-    options
+    arguments << options
+    arguments
   end
 end

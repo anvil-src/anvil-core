@@ -36,7 +36,7 @@ module Alfred
       end
 
       def parse_options(arguments)
-        {}
+        [{}]
       end
 
       protected
