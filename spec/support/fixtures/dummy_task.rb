@@ -14,8 +14,8 @@ class DummyTask < Alfred::Task
     OptionParser.new do |opts|
       opts.on('-a', '--argument [VALUE]') do |val|
         options[:argument] = val
-      end.parse! arguments
-    end
+      end
+    end.parse! arguments
 
     arguments << options
     arguments
