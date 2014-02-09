@@ -4,7 +4,7 @@ module Alfred
   module Config
     module ClassMethods
       def base_path
-        File.expand_path "~/.alfred"
+        File.expand_path('~/.alfred')
       end
 
       def base_tasks_path
@@ -23,11 +23,9 @@ module Alfred
       protected
 
       def init_base_path
-        unless File.directory? base_path
-          FileUtils.mkdir_p base_path
-          FileUtils.mkdir_p base_tasks_path
-          FileUtils.touch base_config_path
-        end
+        FileUtils.mkdir_p base_path
+        FileUtils.mkdir_p base_tasks_path
+        FileUtils.touch base_config_path
       end
 
       def init_config

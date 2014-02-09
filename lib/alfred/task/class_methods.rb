@@ -35,8 +35,12 @@ module Alfred
         "#{camelized_namespace}::#{camelized_task}".constantize
       end
 
+      def run(*args)
+        new(*args).run
+      end
+
       def parse_options(arguments)
-        [{}]
+        arguments
       end
 
       protected
