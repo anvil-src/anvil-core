@@ -4,12 +4,12 @@ describe Alfred::Cli do
   # before {FakeFS.deactivate!}
   describe '#run' do
     let(:dummy_task) { DummyTask }
-    let(:argv)       { %w[dummy --argument value] }
+    let(:argv)       { %w[dummy arg1 arg2 --argument value] }
 
     context 'with a task name' do
       before do
         dummy_task.should_receive(:new)
-          .with({argument: 'value'}).and_call_original
+          .with('arg1', 'arg2', argument: 'value').and_call_original
         subject.should_not_receive(:print_help)
       end
 
@@ -18,7 +18,7 @@ describe Alfred::Cli do
 
     describe '#build_task' do
       it 'builds the task and parses the arguments' do
-        subject.build_task(argv).options.should == {argument: 'value'}
+        subject.build_task(argv).options.should == { argument: 'value' }
       end
     end
 

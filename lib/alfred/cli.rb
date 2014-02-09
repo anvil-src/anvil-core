@@ -14,7 +14,7 @@ module Alfred
       task_name = arguments.shift
       klazz     = Task.from_name(task_name)
 
-      klazz.new klazz.parse_options(arguments)
+      klazz.new(*klazz.parse_options(arguments))
     end
 
     def print_help
