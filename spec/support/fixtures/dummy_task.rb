@@ -1,4 +1,9 @@
 class DummyTask < Alfred::Task
+  parser do
+    on('-a', '--argument [VALUE]') do |val|
+      options[:argument] = val
+    end
+  end
 
   def initialize(*args)
     @options = args.extract_options!
@@ -7,17 +12,4 @@ class DummyTask < Alfred::Task
   end
 
   def task; end
-
-  def self.parse_options(arguments)
-    options = {}
-
-    OptionParser.new do |opts|
-      opts.on('-a', '--argument [VALUE]') do |val|
-        options[:argument] = val
-      end
-    end.parse! arguments
-
-    arguments << options
-    arguments
-  end
 end

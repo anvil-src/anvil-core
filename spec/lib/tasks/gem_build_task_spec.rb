@@ -74,12 +74,12 @@ describe GemBuildTask do
     end
   end
 
-  describe '.parse_options' do
+  describe '.parse_options!' do
     context 'with install option' do
       let(:arguments) { ['alfred.gem', '--install'] }
 
       it 'returns the correct arguments' do
-        expect(GemBuildTask.parse_options(arguments))
+        expect(GemBuildTask.parse_options!(arguments))
         .to be_eql(['alfred.gem', { install: true }])
       end
     end
@@ -88,7 +88,7 @@ describe GemBuildTask do
       let(:arguments) { ['alfred.gem', '--no-install'] }
 
       it 'returns the correct arguments' do
-        expect(GemBuildTask.parse_options(arguments))
+        expect(GemBuildTask.parse_options!(arguments))
         .to be_eql(['alfred.gem', { install: false }])
       end
     end

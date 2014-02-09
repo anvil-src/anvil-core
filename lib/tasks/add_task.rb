@@ -4,7 +4,13 @@ require 'git'
 require_relative 'gem_build_task'
 
 class AddTask < Alfred::Task
-  def initialize(repo)
+  description 'Adds new alfred tasks sets from a git repository.'
+
+  parser do
+    arguments %w[repository]
+  end
+
+  def initialize(repo, options = {})
     @repo = repo
   end
 

@@ -27,26 +27,12 @@ module Alfred
         befores << [from_name(task_name), options]
       end
 
-      def from_name(task_name)
-        namespaced_task     = get_namespace task_name
-        camelized_task      = "#{namespaced_task.pop}_task".camelize
-        camelized_namespace = "#{namespaced_task.shift}".camelize
-
-        "#{camelized_namespace}::#{camelized_task}".constantize
-      end
-
       def run(*args)
         new(*args).run
       end
 
-      def parse_options(arguments)
-        arguments
-      end
-
-      protected
-
-      def get_namespace(task_name)
-        task_name.to_s.split ':'
+      def descendants
+        ObjectSpace.each_object(Class).select { |klass| klass < self }
       end
     end
   end
