@@ -12,7 +12,7 @@ module Alfred
 
     def self.load_tasks
       task_dirs.each do |dir|
-        Dir[dir + '/lib/tasks/**_task.rb'].each { |task_file| load(task_file) }
+        Dir[dir + '/lib/tasks/**/*_task.rb'].each { |task_file| load(task_file) }
       end
     end
 
