@@ -28,5 +28,6 @@ describe Alfred::Config do
     it { should be_directory(Alfred::Config.base_path) }
     it { should be_directory(Alfred::Config.base_tasks_path) }
     it { should be_exists(Alfred::Config.base_config_path) }
+    it { should be_exists(Alfred::Config.base_projects_path) }
   end
 end

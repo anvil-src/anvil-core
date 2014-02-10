@@ -15,9 +15,7 @@ describe AddTask do
     end
   end
 
-  describe '#clone_repo' do
-    before { Alfred::Config.init }
-
+  describe '#clone_repo', config: true do
     it 'clones the repo with Git' do
       Git.should_receive(:clone).with(repo, 'tasks')
       subject.clone_repo(repo, 'tasks')

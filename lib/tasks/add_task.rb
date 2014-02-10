@@ -1,9 +1,11 @@
 require 'alfred/task'
+require 'alfred/task/repositories'
 require 'alfred/config'
 require 'git'
 require_relative 'gem_build_task'
 
 class AddTask < Alfred::Task
+  include Alfred::Task::Repositories
   description 'Adds new alfred tasks sets from a git repository.'
 
   parser do
@@ -35,13 +37,5 @@ class AddTask < Alfred::Task
   def gemspec(name)
     path = "#{Alfred::Config.base_tasks_path}/#{name}"
     Dir[path + '/*.gemspec'].first
-  end
-
-  def resolve_url(url)
-    if url =~ /^\w+\/\w+$/
-      "git@github.com:#{url}"
-    else
-      url
-    end
   end
 end
