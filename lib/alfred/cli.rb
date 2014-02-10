@@ -1,4 +1,5 @@
 require 'alfred/task_manager'
+require 'tasks/help_task'
 
 module Alfred
   class Cli
@@ -7,8 +8,6 @@ module Alfred
 
       if argv.empty?
         print_help
-      elsif argv[0] == 'help'
-        help_task(argv[1])
       else
         build_task(argv).run
       end
@@ -18,16 +17,27 @@ module Alfred
       Alfred::TaskManager.load_tasks
     end
 
-    def help_task(task_name)
-      klazz = Task.from_name(task_name)
-      puts klazz.help
-    end
-
     def build_task(argv)
       arguments = argv.dup
       task_name = arguments.shift
       klazz     = Task.from_name(task_name)
       klazz.new(*klazz.parse_options!(arguments))
+    rescue NameError
+      task_not_found(task_name)
+      exit(FALSE)
+    rescue ArgumentError
+      help(task_name)
+      exit(FALSE)
+    end
+
+    def task_not_found(task_name)
+      printf("Task '#{task_name}' not found\n\n")
+      print_help
+    end
+
+    def help(task_name)
+      printf("Wrong number of arguments.\n\n")
+      HelpTask.run(task_name)
     end
 
     def print_help
