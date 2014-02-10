@@ -12,8 +12,16 @@ module Alfred
 
     def self.load_tasks
       task_dirs.each do |dir|
-        Dir[dir + '/lib/tasks/**_task.rb'].each {|task_file| load(task_file) }
+        Dir[dir + '/lib/tasks/**_task.rb'].each { |task_file| load(task_file) }
       end
+    end
+
+    def self.tasks_by_name
+      all_tasks.sort_by { |t| t.name }
+    end
+
+    def self.all_tasks
+      ::Alfred::Task.descendants
     end
   end
 end

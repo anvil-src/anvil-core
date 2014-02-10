@@ -33,20 +33,6 @@ describe Alfred::Task do
     end
   end
 
-  describe '.from_name' do
-    context 'without a namespace' do
-      it 'finds the task class' do
-        described_class.from_name('dummy').should eq(DummyTask)
-      end
-    end
-
-    context 'with a namespace' do
-      it 'finds the namespaced tasks class' do
-        described_class.from_name('foo:dummy').should eq(Foo::DummyTask)
-      end
-    end
-  end
-
   describe '#run' do
     before do
       dummy_task.class_eval do

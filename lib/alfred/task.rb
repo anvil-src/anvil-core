@@ -1,8 +1,12 @@
 require 'alfred/task/class_methods'
+require 'alfred/task/naming'
+require 'alfred/task/options'
 
 module Alfred
   class Task
     extend ClassMethods
+    extend Naming
+    extend Options
 
     attr_reader :options
 

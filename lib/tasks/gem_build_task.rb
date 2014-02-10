@@ -5,6 +5,16 @@ require 'alfred/task/system'
 class GemBuildTask < Alfred::Task
   include Alfred::Task::System
 
+  description 'Builds a gem for you and can install it on your system.'
+
+  parser do
+    arguments %w[gemspec_file]
+
+    on('-i', '--[no-]install', 'Install gem') do |i|
+      options[:install] = i
+    end
+  end
+
   def initialize(gemspec_file, options = {})
     @gemspec_file = gemspec_file
     @options = options
@@ -42,18 +52,5 @@ class GemBuildTask < Alfred::Task
 
   def install?
     @options.fetch(:install, true)
-  end
-
-  def self.parse_options(arguments)
-    options = {}
-
-    OptionParser.new do |opts|
-      opts.on('-i', '--[no-]install', 'Install gem') do |i|
-        options[:install] = i
-      end
-    end.parse!(arguments)
-
-    arguments << options
-    arguments
   end
 end
