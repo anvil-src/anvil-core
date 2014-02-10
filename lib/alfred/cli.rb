@@ -3,6 +3,12 @@ require 'tasks/help_task'
 
 module Alfred
   class Cli
+    HELP = <<-HELP
+Alfred is a tool for making your life easier.
+
+Available tasks:
+HELP
+
     def run(argv)
       load_tasks
 
@@ -41,6 +47,7 @@ module Alfred
     end
 
     def print_help
+      printf("%s", HELP)
       tasks = Alfred::TaskManager.tasks_by_name
       tasks.each { |task| print_task_line(task) }
     end
