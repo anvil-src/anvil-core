@@ -10,6 +10,7 @@ require 'fakefs/spec_helpers'
 require 'alfred'
 
 Dir["#{File.dirname(__FILE__)}/support/fixtures/**/*.rb"].each { |f| require f }
+Dir["#{File.dirname(__FILE__)}/support/shared/**/*.rb"].each { |f| require f }
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true

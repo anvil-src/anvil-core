@@ -25,9 +25,9 @@ describe Alfred::Cli do
         let(:argv) { %w[ihopethiswillnotexistever arg2] }
 
         it 'prints task list and exits' do
+          expect(subject).to receive(:task_not_found)
+            .with('ihopethiswillnotexistever')
           expect do
-            expect(subject).to receive(:task_not_found)
-              .with('ihopethiswillnotexistever')
             subject.build_task(argv)
           end.to raise_error(SystemExit)
         end
@@ -37,8 +37,8 @@ describe Alfred::Cli do
         let(:argv) { %w[foo:dummy arg1 arg2 arg3 arg4 arg5 arg6 arg7] }
 
         it 'prints task list and exits' do
+          expect(subject).to receive(:help).with('foo:dummy')
           expect do
-            expect(subject).to receive(:help).with('foo:dummy')
             subject.build_task(argv)
           end.to raise_error(SystemExit)
         end

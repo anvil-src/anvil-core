@@ -15,6 +15,10 @@ module Alfred
         "#{base_path}/config.rb"
       end
 
+      def base_projects_path
+        "#{base_path}/projects"
+      end
+
       def init
         init_base_path
         init_config
@@ -23,9 +27,10 @@ module Alfred
       protected
 
       def init_base_path
-        FileUtils.mkdir_p base_path
-        FileUtils.mkdir_p base_tasks_path
-        FileUtils.touch base_config_path
+        FileUtils.mkdir_p(base_path)
+        FileUtils.mkdir_p(base_tasks_path)
+        FileUtils.mkdir_p(base_projects_path)
+        FileUtils.touch(base_config_path) unless File.exists?(base_config_path)
       end
 
       def init_config
