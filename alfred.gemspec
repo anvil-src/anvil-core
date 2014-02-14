@@ -6,8 +6,8 @@ require 'alfred/version'
 Gem::Specification.new do |spec|
   spec.name          = "alfred"
   spec.version       = Alfred::VERSION
-  spec.authors       = ['Fran Casas']
-  spec.email         = %w(nflamel@otrobloggeek.com)
+  spec.authors       = ['Fran Casas', 'Jon de Andres']
+  spec.email         = %w(nflamel@otrobloggeek.com jondeandres@gmail.com)
   spec.description   = 'Alfred Pennyworth. A gem to help us with our daily superhero tasks'
   spec.summary       = 'Alfred Pennyworth. A gem to help us with our daily superhero tasks'
   spec.homepage      = ''
