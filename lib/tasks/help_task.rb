@@ -7,12 +7,14 @@ class HelpTask < Alfred::Task
     arguments %w[task]
   end
 
+  attr_reader :task
+
   def initialize(task, options = {})
     @task = task
   end
 
   def task
-    klazz = Alfred::Task.from_name(@task)
+    klazz = Alfred::Task.from_name(task)
     printf(klazz.help)
   end
 end

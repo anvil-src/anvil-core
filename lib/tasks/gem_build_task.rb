@@ -15,16 +15,18 @@ class GemBuildTask < Alfred::Task
     end
   end
 
+  attr_reader :gemspec_file, :options
+
   def initialize(gemspec_file, options = {})
     @gemspec_file = gemspec_file
     @options = options
   end
 
   def task
-    path = File.dirname(@gemspec_file)
+    path = File.dirname(gemspec_file)
 
     Dir.chdir(path) do
-      gem_file = build_gem(@gemspec_file)
+      gem_file = build_gem(gemspec_file)
       install_gem(gem_file) if install?
 
       gem_file
@@ -51,6 +53,6 @@ class GemBuildTask < Alfred::Task
   end
 
   def install?
-    @options.fetch(:install, true)
+    options.fetch(:install, true)
   end
 end

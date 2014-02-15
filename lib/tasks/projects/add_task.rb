@@ -12,14 +12,16 @@ module Projects
       arguments %w[name repository]
     end
 
+    attr_reader :name, :repo
+
     def initialize(name, repo, options = {})
       @name = name
       @repo = repo
     end
 
     def task
-      url_to_clone = resolve_url(@repo)
-      clone_repo(url_to_clone, @name)
+      url_to_clone = resolve_url(repo)
+      clone_repo(url_to_clone, name)
     end
 
     def clone_repo(url, name)

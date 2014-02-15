@@ -12,12 +12,14 @@ class AddTask < Alfred::Task
     arguments %w[repository]
   end
 
+  attr_reader :repo
+
   def initialize(repo, options = {})
     @repo = repo
   end
 
   def task
-    url_to_clone = resolve_url(@repo)
+    url_to_clone = resolve_url(repo)
     name = url_to_clone.match(/.*\/(.*)$/)[1]
 
     clone_repo(url_to_clone, name)
