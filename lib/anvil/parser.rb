@@ -24,7 +24,7 @@ module Anvil
 
     def banner_string
       args = arguments.map(&:upcase).join(' ')
-      message = "Usage: alfred #{task.task_name}"
+      message = "Usage: anvil #{task.task_name}"
       message += " #{args}" unless args.empty?
       message += ' [options]'
 
