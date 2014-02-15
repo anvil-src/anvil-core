@@ -1,3 +1,5 @@
 class DummyAssure < Anvil::Assure
-  def assured?; true; end
+  def assured?
+    true
+  end
 end

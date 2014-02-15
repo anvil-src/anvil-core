@@ -47,7 +47,7 @@ HELP
     end
 
     def print_help
-      printf("%s", HELP)
+      printf('%s', HELP)
       tasks = Anvil::TaskManager.tasks_by_name
       tasks.each { |task| print_task_line(task) }
     end

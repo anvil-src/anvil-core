@@ -11,4 +11,3 @@ describe Anvil::FileAssure do
     it { should_not be_assured('dummy_file.txt') }
   end
 end
-
