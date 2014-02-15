@@ -1,8 +1,8 @@
 require 'fileutils'
-require 'alfred/task'
-require 'alfred/rubygems'
+require 'anvil/task'
+require 'anvil/rubygems'
 
-class GemBuildTask < Alfred::Task
+class GemBuildTask < Anvil::Task
   description 'Builds a gem for you and can install it on your system.'
 
   parser do
@@ -25,14 +25,14 @@ class GemBuildTask < Alfred::Task
 
     Dir.chdir(path) do
       gem_file = build_gem(gemspec_file)
-      Alfred::Rubygems.install gem_file if install?
+      Anvil::Rubygems.install gem_file if install?
 
       gem_file
     end
   end
 
   def build_gem(gemspec_file)
-    rubygems_output = Alfred::Rubygems.build(gemspec_file)
+    rubygems_output = Anvil::Rubygems.build(gemspec_file)
     gem_file        = extract_gem_file(rubygems_output)
 
     FileUtils.mkdir_p('pkg')

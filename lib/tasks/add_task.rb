@@ -1,12 +1,12 @@
-require 'alfred/task'
-require 'alfred/task/repositories'
-require 'alfred/config'
+require 'anvil/task'
+require 'anvil/task/repositories'
+require 'anvil/config'
 require 'git'
 require_relative 'gem_build_task'
 
-class AddTask < Alfred::Task
-  include Alfred::Task::Repositories
-  description 'Adds new alfred tasks suite from a git repository.'
+class AddTask < Anvil::Task
+  include Anvil::Task::Repositories
+  description 'Adds new anvil tasks suite from a git repository.'
 
   parser do
     arguments %w[repository]
@@ -27,7 +27,7 @@ class AddTask < Alfred::Task
   end
 
   def clone_repo(url, name)
-    Dir.chdir(Alfred::Config.base_tasks_path) { Git.clone(url, name) }
+    Dir.chdir(Anvil::Config.base_tasks_path) { Git.clone(url, name) }
   end
 
   def install(name)
@@ -37,7 +37,7 @@ class AddTask < Alfred::Task
   end
 
   def gemspec(name)
-    path = "#{Alfred::Config.base_tasks_path}/#{name}"
+    path = "#{Anvil::Config.base_tasks_path}/#{name}"
     Dir[path + '/*.gemspec'].first
   end
 end

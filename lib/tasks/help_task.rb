@@ -1,7 +1,7 @@
-require 'alfred/task'
+require 'anvil/task'
 
-class HelpTask < Alfred::Task
-  description 'Help for the alfred tasks. Usage: alfred help TASK'
+class HelpTask < Anvil::Task
+  description 'Help for the anvil tasks. Usage: anvil help TASK'
 
   parser do
     arguments %w[task_name]
@@ -14,7 +14,7 @@ class HelpTask < Alfred::Task
   end
 
   def task
-    klazz = Alfred::Task.from_name(task_name)
+    klazz = Anvil::Task.from_name(task_name)
     printf(klazz.help)
   end
 end

@@ -1,12 +1,12 @@
 require 'spec_helper'
-require 'alfred/task/options'
+require 'anvil/task/options'
 
-describe Alfred::Task::Options do
+describe Anvil::Task::Options do
   let(:klass) { DummyTask }
 
   describe '.define_parser' do
-    it 'returns an instance of Alfred::Parser' do
-      expect(klass.define_parser).to be_kind_of(Alfred::Parser)
+    it 'returns an instance of Anvil::Parser' do
+      expect(klass.define_parser).to be_kind_of(Anvil::Parser)
     end
   end
 

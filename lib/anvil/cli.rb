@@ -1,10 +1,10 @@
-require 'alfred/task_manager'
+require 'anvil/task_manager'
 require 'tasks/help_task'
 
-module Alfred
+module Anvil
   class Cli
     HELP = <<-HELP
-Alfred is a tool for making your life easier.
+Anvil is a tool for making your life easier.
 
 Available tasks:
 HELP
@@ -20,7 +20,7 @@ HELP
     end
 
     def load_tasks
-      Alfred::TaskManager.load_tasks
+      Anvil::TaskManager.load_tasks
     end
 
     def build_task(argv)
@@ -48,7 +48,7 @@ HELP
 
     def print_help
       printf("%s", HELP)
-      tasks = Alfred::TaskManager.tasks_by_name
+      tasks = Anvil::TaskManager.tasks_by_name
       tasks.each { |task| print_task_line(task) }
     end
 

@@ -1,10 +1,10 @@
 require 'fileutils'
 
-module Alfred
+module Anvil
   module Config
     module ClassMethods
       def base_path
-        File.expand_path('~/.alfred')
+        File.expand_path('~/.anvil')
       end
 
       def base_tasks_path

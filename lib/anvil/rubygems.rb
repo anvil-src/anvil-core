@@ -1,6 +1,6 @@
 require 'cocaine'
 
-module Alfred
+module Anvil
   class Rubygems
     class << self
       def build(gemspec)

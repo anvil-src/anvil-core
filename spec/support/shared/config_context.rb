@@ -1,3 +1,3 @@
-shared_context 'init alfred config', config: true do
-  before { Alfred::Config.init }
+shared_context 'init anvil config', config: true do
+  before { Anvil::Config.init }
 end

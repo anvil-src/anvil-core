@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Alfred::Cli do
+describe Anvil::Cli do
   # before {FakeFS.deactivate!}
   describe '#run' do
     let(:dummy_task) { DummyTask }

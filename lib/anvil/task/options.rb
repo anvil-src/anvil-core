@@ -1,6 +1,6 @@
-require 'alfred/parser'
+require 'anvil/parser'
 
-module Alfred
+module Anvil
   class Task
     module Options
       def help
@@ -12,7 +12,7 @@ module Alfred
       end
 
       def define_parser(&block)
-        parser = Alfred::Parser.new
+        parser = Anvil::Parser.new
         parser.task = self
         configure_parser(parser, &block)
         parser

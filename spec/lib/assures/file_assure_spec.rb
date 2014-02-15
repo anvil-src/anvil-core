@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Alfred::FileAssure do
+describe Anvil::FileAssure do
   context 'with an existing file' do
     before { FileUtils.touch 'dummy_file.txt' }
 

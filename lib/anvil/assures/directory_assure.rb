@@ -1,5 +1,5 @@
-module Alfred
-  class DirectoryAssure < Alfred::FileAssure
+module Anvil
+  class DirectoryAssure < Anvil::FileAssure
 
     def assured?(dir)
       super && assure_dir?(dir)

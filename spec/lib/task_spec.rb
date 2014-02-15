@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Alfred::Task do
+describe Anvil::Task do
   let(:dummy_task)  { DummyTask }
   let(:after_task)  { DummyAfterTask }
   let(:before_task) { DummyBeforeTask }

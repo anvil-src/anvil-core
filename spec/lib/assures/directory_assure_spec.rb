@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Alfred::DirectoryAssure do
+describe Anvil::DirectoryAssure do
   context 'with an existing directory' do
     before { FileUtils.mkdir('dummy_dir') }
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Alfred::Assure do
+describe Anvil::Assure do
   subject { dummy_assure.new }
 
   context 'on a passing assure' do
