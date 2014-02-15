@@ -22,7 +22,7 @@ describe GemBuildTask do
 
     context 'without install or no-install option' do
       it 'calls #install_gem' do
-        expect(subject).to receive(:install_gem)
+        expect(Alfred::Rubygems).to receive(:install)
 
         expect(subject.task).to be_eql('alfred-2.0.0.gem')
       end
@@ -32,7 +32,7 @@ describe GemBuildTask do
       let(:options) { { install: false } }
 
       it 'doenst call install_gem ' do
-        expect(subject).to_not receive(:install_gem)
+        expect(Alfred::Rubygems).to_not receive(:install_gem)
 
         subject.task
       end
@@ -40,16 +40,18 @@ describe GemBuildTask do
   end
 
   describe '#extract_gem_file' do
-    it 'extractts the gem file' do
+    it 'extracts the gem file' do
       expect(subject.extract_gem_file(output)).to be_eql('alfred-2.0.0.gem')
     end
   end
 
   describe '#build_gem' do
     let(:gem_file) { 'alfred.gem' }
+
     before do
-      subject.stub(:command) do
+      Alfred::Rubygems.stub(:build) do
         FileUtils.touch('alfred-2.0.0.gem')
+
         output
       end
     end
@@ -62,15 +64,6 @@ describe GemBuildTask do
 
     it 'returns the gem file path' do
       expect(subject.build_gem(gem_file)).to be_eql('/pkg/alfred-2.0.0.gem')
-    end
-  end
-
-  describe '#install_gem' do
-    let(:command) { 'gem install alfred' }
-
-    it 'calls gem install' do
-      expect(subject).to receive(:command).with(command)
-      subject.install_gem('alfred')
     end
   end
 
