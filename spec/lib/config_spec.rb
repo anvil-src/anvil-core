@@ -7,9 +7,7 @@ describe Anvil::Config do
   its('github.user')  { should be_nil }
   its('github.token') { should be_nil }
 
-  context 'with a config file' do
-    include_context 'init anvil config'
-
+  context 'with a config file', config: true do
     its('github.user')  { should eq('dummy_user') }
     its('github.token') { should eq('dummy_token') }
   end
