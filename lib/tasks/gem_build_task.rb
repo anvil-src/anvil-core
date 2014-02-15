@@ -1,10 +1,8 @@
 require 'fileutils'
 require 'alfred/task'
-require 'alfred/task/system'
+require 'alfred/rubygems'
 
 class GemBuildTask < Alfred::Task
-  include Alfred::Task::System
-
   description 'Builds a gem for you and can install it on your system.'
 
   parser do
@@ -27,15 +25,15 @@ class GemBuildTask < Alfred::Task
 
     Dir.chdir(path) do
       gem_file = build_gem(gemspec_file)
-      install_gem(gem_file) if install?
+      Alfred::Rubygems.install gem_file if install?
 
       gem_file
     end
   end
 
   def build_gem(gemspec_file)
-    cmd = "gem build #{gemspec_file}"
-    gem_file = extract_gem_file(command(cmd))
+    rubygems_output = Alfred::Rubygems.build(gemspec_file)
+    gem_file        = extract_gem_file(rubygems_output)
 
     FileUtils.mkdir_p('pkg')
     FileUtils.move(gem_file, 'pkg')
@@ -45,11 +43,6 @@ class GemBuildTask < Alfred::Task
 
   def extract_gem_file(output)
     output.match(/File: (.*)$/)[1]
-  end
-
-  def install_gem(gem_file)
-    cmd = "gem install #{gem_file}"
-    command(cmd)
   end
 
   def install?

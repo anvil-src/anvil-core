@@ -27,7 +27,7 @@ module Alfred
         end
 
         parser.separator ''
-        parser.separator 'These are the available options:'
+        parser.separator 'Available options: '
         parser.instance_eval(&block)
         parser
       end
