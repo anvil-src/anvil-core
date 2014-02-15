@@ -6,7 +6,7 @@ require_relative 'gem_build_task'
 
 class AddTask < Alfred::Task
   include Alfred::Task::Repositories
-  description 'Adds new alfred tasks sets from a git repository.'
+  description 'Adds new alfred tasks suite from a git repository.'
 
   parser do
     arguments %w[repository]

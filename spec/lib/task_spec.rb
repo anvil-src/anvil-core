@@ -56,7 +56,7 @@ describe Alfred::Task do
     context 'with a non passing assure' do
       before { dummy_task.stub(:assures).and_return([DummyFailedAssure]) }
 
-      it 'does not run the callbacks or the task' do
+      it 'does not run the callbacks nor the task' do
         subject.should_not_receive(:run_before_callbacks)
         subject.should_not_receive(:run_after_callbacks)
         subject.should_not_receive(:run_task)
