@@ -32,5 +32,5 @@ SUMMARY
   spec.add_development_dependency 'rspec',   '~> 2.14'
   spec.add_development_dependency 'byebug',  '~> 2.6'
   spec.add_development_dependency 'fakefs',  '~> 0.5'
-  spec.add_development_dependency 'rubocop', '~> 0.18.1'
+  spec.add_development_dependency 'rubocop', '~> 0.18'
 end
