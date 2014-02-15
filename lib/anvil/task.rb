@@ -41,7 +41,7 @@ module Anvil
     end
 
     def run_task
-      self.task
+      task
     end
   end
 end

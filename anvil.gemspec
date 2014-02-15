@@ -9,13 +9,15 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Fran Casas', 'Jon de Andres']
   spec.email         = %w(nflamel@otrobloggeek.com jondeandres@gmail.com)
   spec.description   = 'Anvil is a tool for building tools.'
-  spec.summary       = 'Anvil is a tool for building tools. A tool for a real craftsmen use to build its tools.'
+  spec.summary       = <<SUMMARY
+Anvil is a tool for building tools. A tool that a real craftsmen uses to build its tools.
+SUMMARY
   spec.homepage      = 'http://github.com/franciscoj/anvil'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.executables   = spec.files.grep(/^bin\//) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(/^(test|spec|features)\//)
   spec.require_paths = %w(lib)
 
   # Runtime dependencies
@@ -30,4 +32,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec',   '~> 2.14'
   spec.add_development_dependency 'byebug',  '~> 2.6'
   spec.add_development_dependency 'fakefs',  '~> 0.5'
+  spec.add_development_dependency 'rubocop', '~> 0.18.1'
 end

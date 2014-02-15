@@ -3,4 +3,3 @@ module Foo
     def task; end
   end
 end
-

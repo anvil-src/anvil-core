@@ -21,7 +21,7 @@ describe Anvil::Task::Options do
       end
     end
 
-    let(:arguments) { ['arg1', 'arg2', '--install'] }
+    let(:arguments) { %w{arg1 arg2 --install} }
 
     let(:expected) do
       ['arg1', 'arg2', { install: true }]
