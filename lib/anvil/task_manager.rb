@@ -1,12 +1,12 @@
-require 'alfred/config'
+require 'anvil/config'
 
-module Alfred
+module Anvil
   module TaskManager
     def self.task_dirs
-      Dir[Alfred::Config.base_tasks_path + '/*'] << alfred_tasks_dir
+      Dir[Anvil::Config.base_tasks_path + '/*'] << anvil_tasks_dir
     end
 
-    def self.alfred_tasks_dir
+    def self.anvil_tasks_dir
       File.expand_path('../../..', __FILE__)
     end
 
@@ -21,7 +21,7 @@ module Alfred
     end
 
     def self.all_tasks
-      ::Alfred::Task.descendants
+      ::Anvil::Task.descendants
     end
   end
 end

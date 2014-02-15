@@ -1,8 +1,8 @@
-require 'alfred/task/class_methods'
-require 'alfred/task/naming'
-require 'alfred/task/options'
+require 'anvil/task/class_methods'
+require 'anvil/task/naming'
+require 'anvil/task/options'
 
-module Alfred
+module Anvil
   class Task
     extend ClassMethods
     extend Naming

@@ -1,15 +1,15 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'alfred/version'
+require 'anvil/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "alfred"
-  spec.version       = Alfred::VERSION
+  spec.name          = 'anvil'
+  spec.version       = Anvil::VERSION
   spec.authors       = ['Fran Casas', 'Jon de Andres']
   spec.email         = %w(nflamel@otrobloggeek.com jondeandres@gmail.com)
-  spec.description   = 'Alfred Pennyworth. A gem to help us with our daily superhero tasks'
-  spec.summary       = 'Alfred Pennyworth. A gem to help us with our daily superhero tasks'
+  spec.description   = 'Anvil is a tool for building tools.'
+  spec.summary       = 'Anvil is a tool for building tools. A tool for a real craftsmen use to build its tools.'
   spec.homepage      = ''
   spec.license       = 'MIT'
 

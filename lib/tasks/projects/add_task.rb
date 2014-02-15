@@ -1,12 +1,12 @@
-require 'alfred/task'
-require 'alfred/task/repositories'
-require 'alfred/config'
+require 'anvil/task'
+require 'anvil/task/repositories'
+require 'anvil/config'
 require 'git'
 
 module Projects
-  class AddTask < Alfred::Task
-    include Alfred::Task::Repositories
-    description 'Adds a new project for alfred.'
+  class AddTask < Anvil::Task
+    include Anvil::Task::Repositories
+    description 'Adds a new project for anvil.'
 
     parser do
       arguments %w[name repository]
@@ -25,7 +25,7 @@ module Projects
     end
 
     def clone_repo(url, name)
-      Dir.chdir(Alfred::Config.base_projects_path) { Git.clone(url, name) }
+      Dir.chdir(Anvil::Config.base_projects_path) { Git.clone(url, name) }
     end
   end
 end

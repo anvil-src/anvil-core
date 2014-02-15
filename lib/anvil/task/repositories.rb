@@ -1,4 +1,4 @@
-module Alfred
+module Anvil
   class Task
     module Repositories
       def resolve_url(url)

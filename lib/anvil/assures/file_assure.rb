@@ -1,5 +1,5 @@
-module Alfred
-  class FileAssure < Alfred::Assure
+module Anvil
+  class FileAssure < Anvil::Assure
 
     def assured?(file)
       assure_exists? file

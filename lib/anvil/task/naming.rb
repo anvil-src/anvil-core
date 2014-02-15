@@ -1,6 +1,6 @@
 require 'active_support/core_ext/string'
 
-module Alfred
+module Anvil
   class Task
     module Naming
       def get_namespace(task_name)

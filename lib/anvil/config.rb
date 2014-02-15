@@ -1,11 +1,11 @@
 require 'mixlib/config'
-require 'alfred/config/class_methods'
+require 'anvil/config/class_methods'
 require 'gem_ext/mixlib'
 
-module Alfred
+module Anvil
   module Config
     extend Mixlib::Config
-    extend Alfred::Config::ClassMethods
+    extend Anvil::Config::ClassMethods
 
     config_context :github do
       configurable :user

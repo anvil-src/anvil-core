@@ -1,3 +1,3 @@
-class DummyFailedAssure < Alfred::Assure
+class DummyFailedAssure < Anvil::Assure
   def assured?; false; end
 end

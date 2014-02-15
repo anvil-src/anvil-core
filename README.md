@@ -1,6 +1,8 @@
-# Alfred
+# Anvil
 
-Alfred tries to be a framework for building command line applications to
+Anvil is a tool for the real craftsmen to build its own tools.
+
+Anvil tries to be a framework for building command line applications to
 automate tedious tasks like apps or gems releasing process. Pull request
 updating, etc.
 
@@ -8,13 +10,13 @@ updating, etc.
 
 To install it:
 
-    gem install alfred
+    gem install anvil
 
 ## Usage
 
 To see all the options execute:
 
-    $ alfred help
+    $ anvil
 
 ## Contributing
 

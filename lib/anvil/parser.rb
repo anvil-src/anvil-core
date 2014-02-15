@@ -1,4 +1,4 @@
-module Alfred
+module Anvil
   class Parser < OptionParser
     attr_accessor :options
     attr_accessor :task

@@ -1,5 +1,5 @@
 module Foo
-  class DummyTask < Alfred::Task
+  class DummyTask < Anvil::Task
     def task; end
   end
 end

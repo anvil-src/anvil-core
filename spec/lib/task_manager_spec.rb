@@ -1,6 +1,6 @@
 require 'spec_helper'
-require 'alfred/task_manager'
+require 'anvil/task_manager'
 
-describe Alfred::TaskManager do
+describe Anvil::TaskManager do
 
 end

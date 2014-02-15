@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'alfred/task/naming'
+require 'anvil/task/naming'
 
-describe Alfred::Task::Naming do
+describe Anvil::Task::Naming do
   let(:klass) { DummyTask }
 
   describe '#task_name' do

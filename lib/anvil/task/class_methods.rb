@@ -1,6 +1,6 @@
 require 'optparse'
 
-module Alfred
+module Anvil
   class Task
     module ClassMethods
       def afters

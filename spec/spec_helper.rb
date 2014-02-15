@@ -7,7 +7,7 @@
 
 require 'byebug'
 require 'fakefs/spec_helpers'
-require 'alfred'
+require 'anvil'
 
 Dir["#{File.dirname(__FILE__)}/support/fixtures/**/*.rb"].each { |f| require f }
 Dir["#{File.dirname(__FILE__)}/support/shared/**/*.rb"].each { |f| require f }

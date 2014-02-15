@@ -6,7 +6,7 @@ describe Projects::ListTask do
   let(:projects) { %w[a b c] }
 
   describe '#task', config: true do
-    let(:base) { Alfred::Config.base_projects_path }
+    let(:base) { Anvil::Config.base_projects_path }
 
     before do
       projects.each { |p| FileUtils.mkdir_p(base + "/#{p}") }

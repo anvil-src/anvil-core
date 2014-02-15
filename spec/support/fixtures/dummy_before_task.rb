@@ -1,3 +1,3 @@
-class DummyBeforeTask < Alfred::Task
+class DummyBeforeTask < Anvil::Task
   def task; end
 end

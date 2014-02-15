@@ -1,4 +1,4 @@
-module Alfred
+module Anvil
   class Assure
     class << self
       def from_name(assure_name)

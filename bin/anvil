@@ -2,7 +2,7 @@
 
 require 'rubygems'
 require 'bundler/setup'
-require 'alfred'
+require 'anvil'
 
-Alfred::Config.init
-Alfred::Cli.new.run ARGV
+Anvil::Config.init
+Anvil::Cli.new.run ARGV

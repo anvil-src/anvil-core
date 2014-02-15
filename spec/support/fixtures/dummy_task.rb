@@ -1,4 +1,4 @@
-class DummyTask < Alfred::Task
+class DummyTask < Anvil::Task
   parser do
     on('-a', '--argument [VALUE]') do |val|
       options[:argument] = val

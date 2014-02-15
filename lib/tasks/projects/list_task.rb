@@ -1,11 +1,11 @@
 module Projects
-  class ListTask < Alfred::Task
-    description 'List the projects that alfred can manage.'
+  class ListTask < Anvil::Task
+    description 'List the projects that anvil can manage.'
 
     def initialize(options = {}); end
 
     def task
-      Dir.chdir(Alfred::Config.base_projects_path) { list_projects(projects) }
+      Dir.chdir(Anvil::Config.base_projects_path) { list_projects(projects) }
     end
 
     def projects

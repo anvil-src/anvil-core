@@ -5,26 +5,26 @@ describe GemBuildTask do
   let(:output) do
     <<-END
   Successfully built RubyGem
-  Name: alfred
+  Name: anvil
   Version: 2.0.0
-  File: alfred-2.0.0.gem
+  File: anvil-2.0.0.gem
   END
   end
-  let(:gemspec_file) { 'alfred.gemspec' }
+  let(:gemspec_file) { 'anvil.gemspec' }
   let(:options) { {} }
 
   subject { GemBuildTask.new(gemspec_file, options) }
 
   describe '#task' do
     before do
-      expect(subject).to receive(:build_gem).and_return('alfred-2.0.0.gem')
+      expect(subject).to receive(:build_gem).and_return('anvil-2.0.0.gem')
     end
 
     context 'without install or no-install option' do
       it 'calls #install_gem' do
-        expect(Alfred::Rubygems).to receive(:install)
+        expect(Anvil::Rubygems).to receive(:install)
 
-        expect(subject.task).to be_eql('alfred-2.0.0.gem')
+        expect(subject.task).to be_eql('anvil-2.0.0.gem')
       end
     end
 
@@ -32,7 +32,7 @@ describe GemBuildTask do
       let(:options) { { install: false } }
 
       it 'doenst call install_gem ' do
-        expect(Alfred::Rubygems).to_not receive(:install_gem)
+        expect(Anvil::Rubygems).to_not receive(:install_gem)
 
         subject.task
       end
@@ -41,7 +41,7 @@ describe GemBuildTask do
 
   describe '#extract_gem_file' do
     it 'extracts the gem file' do
-      expect(subject.extract_gem_file(output)).to be_eql('alfred-2.0.0.gem')
+      expect(subject.extract_gem_file(output)).to be_eql('anvil-2.0.0.gem')
     end
   end
 
@@ -49,8 +49,8 @@ describe GemBuildTask do
     let(:gem_file) { 'alfred.gem' }
 
     before do
-      Alfred::Rubygems.stub(:build) do
-        FileUtils.touch('alfred-2.0.0.gem')
+      Anvil::Rubygems.stub(:build) do
+        FileUtils.touch('anvil-2.0.0.gem')
 
         output
       end
@@ -59,30 +59,30 @@ describe GemBuildTask do
     it 'builds the gem' do
       subject.build_gem(gem_file)
 
-      expect(File.exists?('pkg/alfred-2.0.0.gem')).to be_true
+      expect(File.exists?('pkg/anvil-2.0.0.gem')).to be_true
     end
 
     it 'returns the gem file path' do
-      expect(subject.build_gem(gem_file)).to be_eql('/pkg/alfred-2.0.0.gem')
+      expect(subject.build_gem(gem_file)).to be_eql('/pkg/anvil-2.0.0.gem')
     end
   end
 
   describe '.parse_options!' do
     context 'with install option' do
-      let(:arguments) { ['alfred.gem', '--install'] }
+      let(:arguments) { ['anvil.gem', '--install'] }
 
       it 'returns the correct arguments' do
         expect(GemBuildTask.parse_options!(arguments))
-        .to be_eql(['alfred.gem', { install: true }])
+        .to be_eql(['anvil.gem', { install: true }])
       end
     end
 
     context 'with --no-install option' do
-      let(:arguments) { ['alfred.gem', '--no-install'] }
+      let(:arguments) { ['anvil.gem', '--no-install'] }
 
       it 'returns the correct arguments' do
         expect(GemBuildTask.parse_options!(arguments))
-        .to be_eql(['alfred.gem', { install: false }])
+        .to be_eql(['anvil.gem', { install: false }])
       end
     end
   end
