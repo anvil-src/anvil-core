@@ -1,7 +1,7 @@
 require 'anvil/config'
 require 'anvil/task'
 require 'rubygems'
-require 'bundler/shared_helpers'
+require 'bundler'
 
 module Anvil
   module TaskManager
