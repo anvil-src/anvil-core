@@ -2,6 +2,9 @@
 
 Anvil is a tool for the real craftsmen to build its own tools.
 
+  - [![Build Status](https://travis-ci.org/anvil-core/anvil-src.png?branch=master)](https://travis-ci.org/anvil-core/anvil-src)
+
+
 Anvil tries to be a framework for building command line applications to
 automate tedious tasks like apps or gems releasing process. Pull request
 updating, etc.
