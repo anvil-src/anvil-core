@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'anvil/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'anvil'
+  spec.name          = 'anvil-core'
   spec.version       = Anvil::VERSION
   spec.authors       = ['Fran Casas', 'Jon de Andres']
   spec.email         = %w(nflamel@otrobloggeek.com jondeandres@gmail.com)
@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = <<SUMMARY
 Anvil is a tool for building tools. A tool that a real craftsmen uses to build its tools.
 SUMMARY
-  spec.homepage      = 'http://github.com/franciscoj/anvil'
+  spec.homepage      = 'http://github.com/anvil-src/anvil-core'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
