@@ -9,6 +9,16 @@ Anvil tries to be a framework for building command line applications
 to automate tedious tasks like apps or gems releasing process. Pull
 request updating, etc.
 
+It's purpose is to provide an easy to use Object Oriented framework
+that developers can use to automate par of its day to day work.
+
+Things like:
+
+  * Updating your pull requests.
+  * Installing your dot files
+  * Doing complex build which involve several projects and branches.
+  * Any other stuff you might want.
+
 ## Installation
 
 To install it:
