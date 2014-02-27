@@ -2,7 +2,7 @@
 
 Anvil is a tool for the real craftsmen to build its own tools.
 
-  - [![Build Status](https://travis-ci.org/anvil-core/anvil-src.png?branch=master)](https://travis-ci.org/anvil-core/anvil-src)
+  - [![Build Status](https://travis-ci.org/anvil-src/anvil-core.png?branch=master)](https://travis-ci.org/anvil-src/anvil-core)
 
 
 Anvil tries to be a framework for building command line applications to
