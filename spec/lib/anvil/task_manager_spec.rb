@@ -10,7 +10,7 @@ describe Anvil::TaskManager do
   end
 
   describe '.files_from_current_project' do
-    let(:gemfile_path) { File.dirname(Bundler::SharedHelpers.default_gemfile) }
+    let(:gemfile_path) { described_class.current_project_path }
     let(:project_task_path) { gemfile_path + '/lib/anvil/' }
 
     it 'returns the task files in the path' do
