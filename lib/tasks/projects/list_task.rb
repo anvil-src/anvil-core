@@ -1,3 +1,5 @@
+require 'anvil/task'
+
 module Projects
   class ListTask < Anvil::Task
     description 'List the projects that anvil can manage.'
