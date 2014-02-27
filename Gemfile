@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in anvil.gemspec
+# Specify your gem's dependencies in anvil-core.gemspec
 gemspec
 
 group :test do
