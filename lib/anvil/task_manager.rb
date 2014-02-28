@@ -1,7 +1,6 @@
 require 'anvil/config'
 require 'anvil/task'
 require 'rubygems'
-require 'bundler/shared_helpers'
 
 module Anvil
   module TaskManager
@@ -17,8 +16,12 @@ module Anvil
     end
 
     def self.files_from_current_project
-      path = File.dirname(Bundler::SharedHelpers.default_gemfile) + '/lib/anvil/'
+      path = current_project_path + '/lib/anvil/'
       files_from_path(path)
+    end
+
+    def self.current_project_path
+      %x{git rev-parse --show-toplevel}.strip
     end
 
     def self.files_from_path(path)
