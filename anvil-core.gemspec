@@ -27,7 +27,7 @@ SUMMARY
   spec.add_runtime_dependency     'activesupport', '~> 4.0'
   spec.add_runtime_dependency     'mixlib-config', '~> 2.1'
   spec.add_runtime_dependency     'cocaine',       '~> 0.5'
-  spec.add_runtime_dependency     'semantic'
+  spec.add_runtime_dependency     'semantic',      '~> 1.3'
 
   # Development dependencies
   spec.add_development_dependency 'bundler', '~> 1.5'
