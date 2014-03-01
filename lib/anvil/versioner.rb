@@ -20,6 +20,23 @@ module Anvil
       define_method("#{term}!") { bump!(term) }
     end
 
+    # Bumps a version by incrementing one of its terms and reseting the others
+    # according to semver specification.
+    #
+    # @example
+    #   Versioner.new('1.2.3-alpha.1+build.2').bump(:major)
+    #     # => '2.0.0'
+    #   Versioner.new('1.2.3-alpha.1+build.2').bump(:minor)
+    #     # => '1.3.0'
+    #   Versioner.new('1.2.3-alpha.1+build.2').bump(:patch)
+    #     # => '1.2.4'
+    #   Versioner.new('1.2.3-alpha.1+build.2').bump(:pre)
+    #     # => '1.2.3-alpha.2'
+    #   Versioner.new('1.2.3-alpha.1+build.2').bump(:build)
+    #     # => '1.2.3-alpha.2+build.3'
+    #
+    # @param term [Symbol] the term to increment
+    # @raise [Anvil::Versioner::NotSuportedTerm] When the given term is invalid
     def bump!(term)
       fail NotSupportedTerm.new(term) unless TERMS.include?(term.to_sym)
 
