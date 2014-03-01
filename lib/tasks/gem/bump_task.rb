@@ -23,6 +23,10 @@ class Gem::BumpTask < Anvil::Task
 
   protected
 
+  def git
+    @git ||= Git.clone ENV['PWD']
+  end
+
   def file(mode = 'r')
     File.open('VERSION', mode) do |f|
       yield f
@@ -40,10 +44,18 @@ class Gem::BumpTask < Anvil::Task
     new_version
   end
 
+  def commit_and_tag(version)
+    git.add 'VERSION'
+    git.commit "Bump version v#{version}"
+    git.add_tag "v#{version}"
+  end
+
   def write_version(version)
     file('w+') do |f|
       f.puts version
       f.close
     end
+
+    commit_and_tag version
   end
 end
