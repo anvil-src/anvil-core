@@ -10,14 +10,16 @@ Gem::Specification.new do |spec|
   spec.email         = %w(nflamel@otrobloggeek.com jondeandres@gmail.com)
   spec.description   = 'Anvil is a tool for building tools.'
   spec.summary       = <<SUMMARY
-Anvil is a tool for building tools. A tool that a real craftsmen uses to build its tools.
+Anvil is a tool for building tools. A tool that a real craftsmen uses
+to build its tools.
 SUMMARY
   spec.homepage      = 'http://github.com/anvil-src/anvil-core'
   spec.license       = 'MIT'
 
-  spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = spec.files.grep(/^bin\//) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(/^(test|spec|features)\//)
+  spec.files         = Dir['{bin,lib}/**/*']
+  spec.files         += %w(Rakefile README.md LICENSE.txt Gemfile)
+  spec.executables   = %w(anvil)
+  spec.test_files    = Dir['spec/**/*']
   spec.require_paths = %w(lib)
 
   # Runtime dependencies
