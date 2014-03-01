@@ -14,6 +14,12 @@ module Anvil
 
         line.run gem_file: gem_file
       end
+
+      def push(gem_file)
+        line = Cocaine::CommandLine.new 'gem', 'push :gem_file'
+
+        line.run gem_file: gem_file
+      end
     end
   end
 end

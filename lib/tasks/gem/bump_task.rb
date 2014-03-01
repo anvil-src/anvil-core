@@ -23,12 +23,14 @@ class Gem::BumpTask < Anvil::Task
 
   protected
 
-  def file
-    @file ||= File.open('VERSION', 'w+')
+  def file(mode = 'r')
+    File.open('VERSION', mode) do |f|
+      yield f
+    end
   end
 
   def read_version
-    file.read
+    file { |f| f.read.strip }
   end
 
   def bump(old_version)
@@ -39,7 +41,9 @@ class Gem::BumpTask < Anvil::Task
   end
 
   def write_version(version)
-    file.puts version
-    file.close
+    file('w+') do |f|
+      f.puts version
+      f.close
+    end
   end
 end

@@ -8,7 +8,7 @@ module Anvil
     def logger
       @logger ||= Logger.new(STDOUT).tap do |l|
         l.formatter = proc do |*_, msg|
-          msg
+          "#{msg}\n"
         end
       end
     end
