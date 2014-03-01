@@ -17,7 +17,7 @@ SUMMARY
   spec.license       = 'MIT'
 
   spec.files         = Dir['{bin,lib}/**/*']
-  spec.files         += %w(Rakefile README.md LICENSE.txt Gemfile)
+  spec.files         += %w(Rakefile README.md LICENSE.txt Gemfile VERSION)
   spec.executables   = %w(anvil)
   spec.test_files    = Dir['spec/**/*']
   spec.require_paths = %w(lib)

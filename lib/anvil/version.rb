@@ -1,3 +1,12 @@
 module Anvil
-  VERSION = '0.0.1.alpha.1'
+  class << self
+    def version
+      version_path =
+        File.expand_path("#{File.dirname __FILE__}../../../VERSION")
+
+      File.read(version_path)
+    end
+  end
+
+  VERSION = Anvil.version
 end
