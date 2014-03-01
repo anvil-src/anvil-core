@@ -2,7 +2,7 @@ require 'anvil/version'
 require 'active_support/core_ext'
 
 module Anvil
-  # Your code goes here...
+  Error = Class.new(StandardError)
 end
 
 require 'anvil/config'
