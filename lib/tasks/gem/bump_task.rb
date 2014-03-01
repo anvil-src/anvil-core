@@ -1,7 +1,7 @@
 require 'anvil/task'
 require 'anvil/versioner'
 
-class GemBumpTask < Anvil::Task
+class Gem::BumpTask < Anvil::Task
   description "Bumps a gem's version"
 
   parser do

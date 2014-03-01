@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'tasks/gem_bump_task'
+require 'tasks/gem/bump_task'
 
-describe GemBumpTask do
+describe Gem::BumpTask do
   describe '#task' do
-    subject { GemBumpTask.new :major }
+    subject { Gem::BumpTask.new :major }
 
     it 'bumps the version and writes it' do
       subject.stub(:read_version).and_return('2.0.0')
