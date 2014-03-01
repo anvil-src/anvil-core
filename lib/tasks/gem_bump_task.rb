@@ -15,25 +15,30 @@ class GemBumpTask < Anvil::Task
   end
 
   def task
-    version = bump
-    write_new_version version
+    version = bump(read_version)
+    write_version version
 
     version
   end
 
   protected
 
-  def bump
-    old_version = File.read('VERSION').strip!
-    new_version = Anvil::Versioner.new(old_version).bump! term
+  def file
+    @file ||= File.open('VERSION', 'w+')
+  end
 
-    puts "Bumped from #{old_version} to #{new_version}"
+  def read_version
+    file.read
+  end
+
+  def bump(old_version)
+    new_version = Anvil::Versioner.new(old_version).bump! term
+    Anvil.logger.info "Bumped from #{old_version} to #{new_version}"
 
     new_version
   end
 
-  def write_new_version(version)
-    file = File.open('VERSION', 'w')
+  def write_version(version)
     file.puts version
     file.close
   end
