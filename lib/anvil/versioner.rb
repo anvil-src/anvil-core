@@ -30,6 +30,8 @@ module Anvil
       new_version.reset_terms_for(term)
     end
 
+    protected
+
     def increment(old_value)
       case old_value
       when Fixnum
