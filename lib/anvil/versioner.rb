@@ -8,7 +8,7 @@ module Anvil
       end
     end
 
-    TERMS = %i[major minor patch pre build]
+    TERMS = [:major, :minor, :patch, :pre, :build]
     attr_reader :version
 
     def initialize(string)
