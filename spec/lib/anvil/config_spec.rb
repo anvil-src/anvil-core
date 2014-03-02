@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Anvil::Config do
+describe Anvil::Config, fakefs: true do
   subject { Anvil::Config }
   before  { Anvil::Config.reset }
 

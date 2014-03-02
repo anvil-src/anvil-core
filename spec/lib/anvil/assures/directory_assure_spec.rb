@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-describe Anvil::DirectoryAssure do
+describe Anvil::DirectoryAssure, fakefs: true do
   context 'with an existing directory' do
     before { FileUtils.mkdir('dummy_dir') }
+    after  { FileUtils.rm_rf('dummy_dir') }
 
     it { should be_assured('dummy_dir') }
   end
@@ -13,6 +14,7 @@ describe Anvil::DirectoryAssure do
 
   context 'with a file' do
     before { FileUtils.touch('dummy_file') }
+    after  { FileUtils.rm_rf('dummy_file') }
 
     it { should_not be_assured('dummy_file') }
   end

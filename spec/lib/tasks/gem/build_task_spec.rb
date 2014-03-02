@@ -45,7 +45,7 @@ describe Gem::BuildTask do
     end
   end
 
-  describe '#build_gem' do
+  describe '#build_gem', fakefs: true do
     let(:gem_file) { 'alfred.gem' }
 
     before do
@@ -73,7 +73,7 @@ describe Gem::BuildTask do
 
       it 'returns the correct arguments' do
         expect(Gem::BuildTask.parse_options!(arguments))
-        .to be_eql(['anvil.gem', { install: true }])
+          .to be_eql(['anvil.gem', { install: true }])
       end
     end
 
@@ -82,7 +82,7 @@ describe Gem::BuildTask do
 
       it 'returns the correct arguments' do
         expect(Gem::BuildTask.parse_options!(arguments))
-        .to be_eql(['anvil.gem', { install: false }])
+          .to be_eql(['anvil.gem', { install: false }])
       end
     end
   end
