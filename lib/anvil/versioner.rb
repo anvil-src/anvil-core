@@ -69,8 +69,8 @@ module Anvil
       tap do |ver|
         ver.minor = 0 if term == :major
         ver.patch = 0 if term == :major || term == :minor
-        ver.pre   = nil if %i[major minor patch].include? term
-        ver.build = nil if %i[major minor patch pre].include? term
+        ver.pre   = nil if [:major, :minor, :patch].include? term
+        ver.build = nil if [:major, :minor, :patch, :pre].include? term
       end
     end
   end
