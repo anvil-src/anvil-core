@@ -7,7 +7,12 @@ module Anvil
         parser.help
       end
 
+      def parser_block
+        @parser_block
+      end
+
       def parser(&block)
+        @parser_block = block
         @parser ||= define_parser(&block)
       end
 

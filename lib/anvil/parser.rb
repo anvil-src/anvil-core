@@ -1,3 +1,5 @@
+require 'anvil/task'
+
 module Anvil
   class Parser < OptionParser
     attr_accessor :options
@@ -7,10 +9,9 @@ module Anvil
       @options ||= {}
     end
 
-    def arguments(args = [])
-      @arguments ||= []
-      @arguments += args if args.any?
-      @arguments.compact
+    def arguments(args = nil)
+      return @arguments if @arguments
+      @arguments = args if args
     end
 
     def banner
@@ -29,6 +30,11 @@ module Anvil
       message += ' [options]'
 
       message
+    end
+
+    def from(name)
+      task_klass = Anvil::Task.from_name(name)
+      instance_eval(&task_klass.parser_block) if task_klass.parser_block
     end
   end
 end
