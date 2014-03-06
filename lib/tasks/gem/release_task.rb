@@ -2,7 +2,7 @@ require 'anvil/task'
 require 'anvil/rubygems'
 
 class Gem::ReleaseTask < Anvil::Task
-  description 'Builds a new version an pushes to rubygems'
+  description 'Builds a new version and pushes it to rubygems'
 
   parser do
     arguments %w[bump_term]
