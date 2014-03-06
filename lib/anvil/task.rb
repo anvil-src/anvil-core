@@ -22,6 +22,10 @@ module Anvil
       end
     end
 
+    def logger
+      Anvil.logger
+    end
+
     protected
 
     def run_after_callbacks

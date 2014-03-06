@@ -41,7 +41,7 @@ class Gem::ReleaseTask < Anvil::Task
   end
 
   def push(gem_file, version)
-    Anvil.logger.info "Pushing version #{version} to rubygems"
+    logger.info "Pushing version #{version} to rubygems"
     Anvil::Rubygems.push gem_file
   end
 end

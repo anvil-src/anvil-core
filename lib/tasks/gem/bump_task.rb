@@ -39,7 +39,7 @@ class Gem::BumpTask < Anvil::Task
 
   def bump(old_version)
     new_version = Anvil::Versioner.new(old_version).bump! term
-    Anvil.logger.info "Bumped from #{old_version} to #{new_version}"
+    logger.info "Bumped from #{old_version} to #{new_version}"
 
     new_version
   end
