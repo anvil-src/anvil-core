@@ -66,12 +66,12 @@ module Anvil
     # @return [Anvil::Versioner] A new version with the proper number
     # @todo we still need to reset pre-release and builds properly
     def reset_terms_for(term)
-      tap do |ver|
-        ver.minor = 0 if term == :major
-        ver.patch = 0 if term == :major || term == :minor
-        ver.pre   = nil if [:major, :minor, :patch].include? term
-        ver.build = nil if [:major, :minor, :patch, :pre].include? term
-      end
+      self.minor = 0 if term == :major
+      self.patch = 0 if term == :major || term == :minor
+      self.pre   = nil if [:major, :minor, :patch].include? term
+      self.build = nil if [:major, :minor, :patch, :pre].include? term
+
+      self
     end
   end
 end
