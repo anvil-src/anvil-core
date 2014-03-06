@@ -1,9 +1,9 @@
 require 'spec_helper'
 require 'anvil/versioner'
-require 'tasks/gem/new_version_task'
+require 'tasks/gem/release_task'
 
-describe Gem::NewVersionTask do
-  subject { Gem::NewVersionTask.new :major }
+describe Gem::ReleaseTask do
+  subject { Gem::ReleaseTask.new :major }
 
   let(:version) { Anvil::Versioner.new('2.0.0') }
   let(:gem_file) { 'new-gem-v2.0.0.gem' }

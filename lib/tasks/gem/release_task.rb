@@ -1,7 +1,7 @@
 require 'anvil/task'
 require 'anvil/rubygems'
 
-class Gem::NewVersionTask < Anvil::Task
+class Gem::ReleaseTask < Anvil::Task
   description 'Builds a new version an pushes to rubygems'
 
   parser do
