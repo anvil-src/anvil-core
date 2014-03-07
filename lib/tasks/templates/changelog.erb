@@ -1,0 +1,10 @@
+<%= version %>
+----------
+release: <%= actual_date %>
+
+<% history.each do |line| %>
+- <%= line.strip %>
+<% end %>
+
+
+<%= actual_changelog %>

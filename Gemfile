@@ -4,3 +4,8 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'byebug', '~> 2.6'
+
+group :test, :development do
+  gem 'pry'
+  gem 'pry-doc'
+end
