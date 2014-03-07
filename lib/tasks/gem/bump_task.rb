@@ -27,7 +27,7 @@ class Gem::BumpTask < Anvil::Task
     @git ||= Git.new ENV['PWD']
   end
 
-  def file(mode = 'r')
+  def version_file(mode = 'r')
     File.open('VERSION', mode) do |f|
       yield f
     end
@@ -51,7 +51,7 @@ class Gem::BumpTask < Anvil::Task
   end
 
   def write_version(version)
-    file('w+') do |f|
+    version_file('w+') do |f|
       f.puts version
       f.close
     end
