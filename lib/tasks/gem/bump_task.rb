@@ -24,7 +24,7 @@ class Gem::BumpTask < Anvil::Task
   protected
 
   def git
-    @git ||= Git.new ENV['PWD']
+    @git ||= Git.open ENV['PWD']
   end
 
   def version_file(mode = 'r')
