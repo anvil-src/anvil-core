@@ -2,7 +2,17 @@ require 'anvil/version'
 require 'active_support/core_ext'
 
 module Anvil
-  # Your code goes here...
+  Error = Class.new(StandardError)
+
+  class << self
+    def logger
+      @logger ||= Logger.new(STDOUT).tap do |l|
+        l.formatter = proc do |*_, msg|
+          "#{msg}\n"
+        end
+      end
+    end
+  end
 end
 
 require 'anvil/config'

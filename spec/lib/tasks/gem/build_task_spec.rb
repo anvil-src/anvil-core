@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'tasks/gem_build_task'
+require 'tasks/gem/build_task'
 
-describe GemBuildTask do
+describe Gem::BuildTask do
   let(:output) do
     <<-END
   Successfully built RubyGem
@@ -13,7 +13,7 @@ describe GemBuildTask do
   let(:gemspec_file) { 'anvil.gemspec' }
   let(:options) { {} }
 
-  subject { GemBuildTask.new(gemspec_file, options) }
+  subject { Gem::BuildTask.new(gemspec_file, options) }
 
   describe '#task' do
     before do
@@ -45,7 +45,7 @@ describe GemBuildTask do
     end
   end
 
-  describe '#build_gem' do
+  describe '#build_gem', fakefs: true do
     let(:gem_file) { 'alfred.gem' }
 
     before do
@@ -72,8 +72,8 @@ describe GemBuildTask do
       let(:arguments) { ['anvil.gem', '--install'] }
 
       it 'returns the correct arguments' do
-        expect(GemBuildTask.parse_options!(arguments))
-        .to be_eql(['anvil.gem', { install: true }])
+        expect(Gem::BuildTask.parse_options!(arguments))
+          .to be_eql(['anvil.gem', { install: true }])
       end
     end
 
@@ -81,8 +81,8 @@ describe GemBuildTask do
       let(:arguments) { ['anvil.gem', '--no-install'] }
 
       it 'returns the correct arguments' do
-        expect(GemBuildTask.parse_options!(arguments))
-        .to be_eql(['anvil.gem', { install: false }])
+        expect(Gem::BuildTask.parse_options!(arguments))
+          .to be_eql(['anvil.gem', { install: false }])
       end
     end
   end
