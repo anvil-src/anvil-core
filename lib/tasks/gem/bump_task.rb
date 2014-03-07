@@ -34,7 +34,7 @@ class Gem::BumpTask < Anvil::Task
   end
 
   def read_version
-    file { |f| f.read.strip }
+    version_file { |f| f.read.strip }
   end
 
   def bump(old_version)
