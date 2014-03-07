@@ -4,6 +4,8 @@ require 'active_support/core_ext'
 module Anvil
   Error = Class.new(StandardError)
 
+  class RepoNotClean < Error; end
+
   class << self
     def logger
       @logger ||= Logger.new(STDOUT).tap do |l|
