@@ -15,6 +15,7 @@ class Gem::BumpTask < Anvil::Task
   end
 
   def task
+    prepare_repo
     version = bump(read_version)
     write_version version
 
@@ -48,6 +49,7 @@ class Gem::BumpTask < Anvil::Task
     git.add 'VERSION'
     git.commit "Bump version v#{version}"
     git.add_tag "v#{version}"
+    git.push
   end
 
   def write_version(version)
@@ -57,5 +59,17 @@ class Gem::BumpTask < Anvil::Task
     end
 
     commit_and_tag version
+  end
+
+  def prepare_repo
+    fail Anvil::RepoNotClean unless clean?
+
+    git.pull
+  end
+
+  def clean?
+    git.status.changed.empty? &&
+      git.status.deleted.empty? &&
+      git.status.added.empty?
   end
 end
