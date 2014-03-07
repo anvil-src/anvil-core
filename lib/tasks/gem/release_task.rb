@@ -33,7 +33,7 @@ class Gem::ReleaseTask < Anvil::Task
   end
 
   def bump
-    @version = Gem::BumpTask.new(bump_term).task
+    Gem::BumpTask.new(bump_term).task
   end
 
   def build
