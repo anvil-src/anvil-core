@@ -24,7 +24,7 @@ class Gem::BumpTask < Anvil::Task
   protected
 
   def git
-    @git ||= Git.clone ENV['PWD']
+    @git ||= Git.new ENV['PWD']
   end
 
   def file(mode = 'r')
