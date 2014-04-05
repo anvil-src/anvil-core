@@ -14,10 +14,10 @@ module Anvil
 
       def parser(&block)
         @parser_block = block
-        @parser ||= define_parser(&block)
+        @parser ||= build_parser(&block)
       end
 
-      def define_parser(&block)
+      def build_parser(&block)
         parser = Anvil::Parser.new
         parser.task = self
         configure_parser(parser, &block)
