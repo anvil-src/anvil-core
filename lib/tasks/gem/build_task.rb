@@ -2,7 +2,7 @@ require 'fileutils'
 require 'anvil/task'
 require 'anvil/rubygems'
 
-class GemBuildTask < Anvil::Task
+class Gem::BuildTask < Anvil::Task
   description 'Builds a gem for you and can install it on your system.'
 
   parser do

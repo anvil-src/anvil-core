@@ -5,7 +5,19 @@ require 'active_support/core_ext'
 
 # Main anvil module
 module Anvil
-  # Your code goes here...
+  Error = Class.new(StandardError)
+
+  class RepoNotClean < Error; end
+
+  class << self
+    def logger
+      @logger ||= Logger.new(STDOUT).tap do |l|
+        l.formatter = proc do |*_, msg|
+          "#{msg}\n"
+        end
+      end
+    end
+  end
 end
 
 require 'anvil/config'
