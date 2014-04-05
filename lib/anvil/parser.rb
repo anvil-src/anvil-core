@@ -1,6 +1,9 @@
+# encoding: UTF-8
+
 require 'anvil/task'
 
 module Anvil
+  # Parser for anvil command line arguments and options
   class Parser < OptionParser
     attr_accessor :options
     attr_accessor :task

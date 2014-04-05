@@ -1,14 +1,15 @@
+# encoding: UTF-8
+
 require 'anvil/parser'
 
 module Anvil
   class Task
+    # Cli options parsing definition
     module Options
+      attr_reader :parser_block
+
       def help
         parser.help
-      end
-
-      def parser_block
-        @parser_block
       end
 
       def parser(&block)
