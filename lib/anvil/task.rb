@@ -1,8 +1,11 @@
+# encoding: UTF-8
+
 require 'anvil/task/class_methods'
 require 'anvil/task/naming'
 require 'anvil/task/options'
 
 module Anvil
+  # Common class for all tasks
   class Task
     extend ClassMethods
     extend Naming
@@ -14,11 +17,16 @@ module Anvil
       @options = options
     end
 
+    # Runs a task and its callbacks if the assures are OK
+    #
+    # @return [Object, nil] anything the task might return
     def run
       if run_assures
         run_before_callbacks
-        run_task
+        task_return_value = run_task
         run_after_callbacks
+
+        task_return_value
       end
     end
 

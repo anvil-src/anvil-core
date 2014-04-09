@@ -1,7 +1,10 @@
+# encoding: UTF-8
+
 require 'anvil/task_manager'
 require 'tasks/help_task'
 
 module Anvil
+  # Anvil command line interface
   class Cli
     HELP = <<-HELP
 Anvil is a tool for making your life easier.
@@ -9,6 +12,10 @@ Anvil is a tool for making your life easier.
 Available tasks:
 HELP
 
+    # Runs a task or prints its help if it needs arguments
+    #
+    # @param argv [Array] Command line arguments
+    # @return [Object, nil] Anything the task returns
     def run(argv)
       load_tasks
 
@@ -23,6 +30,10 @@ HELP
       Anvil::TaskManager.load_tasks
     end
 
+    # Builds a task and prepares it to run
+    #
+    # @param argv [Array] Command line arguments
+    # @return [Anvil::Task] A task ready to run
     def build_task(argv)
       arguments = argv.dup
       task_name = arguments.shift

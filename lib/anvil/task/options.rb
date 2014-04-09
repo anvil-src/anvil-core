@@ -1,17 +1,23 @@
+# encoding: UTF-8
+
 require 'anvil/parser'
 
 module Anvil
   class Task
+    # Cli options parsing definition
     module Options
+      attr_reader :parser_block
+
       def help
         parser.help
       end
 
       def parser(&block)
-        @parser ||= define_parser(&block)
+        @parser_block = block
+        @parser ||= build_parser(&block)
       end
 
-      def define_parser(&block)
+      def build_parser(&block)
         parser = Anvil::Parser.new
         parser.task = self
         configure_parser(parser, &block)

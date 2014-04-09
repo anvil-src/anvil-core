@@ -1,7 +1,10 @@
+# encoding: UTF-8
+
 require 'fileutils'
 
 module Anvil
   module Config
+    # Configuration initialization
     module ClassMethods
       def base_path
         File.expand_path('~/.anvil')

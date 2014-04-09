@@ -1,43 +1,55 @@
+# encoding: UTF-8
+
 require 'anvil/config'
 require 'anvil/task'
 require 'rubygems'
 
 module Anvil
+  # Manage loading and finding anvil tasks
   module TaskManager
     @tasks_loaded = false
 
+    # Loads all known anvil tasks
     def self.load_tasks
       all_files.each { |file| load(file) }
       @tasks_loaded = true
     end
 
+    # @return [Array] all the core anvil tasks
     def self.files_from_anvil
       files_from_path(File.expand_path('../..', __FILE__))
     end
 
+    # @return [Array] all possible anvil tasks in this project
     def self.files_from_current_project
       path = current_project_path + '/lib/anvil/'
       files_from_path(path)
     end
 
+    # @return [String] top level dir if this is a git managed project
     def self.current_project_path
       %x{git rev-parse --show-toplevel}.strip
     end
 
+    # @param path [String] a path to glob their anvil tasks
+    # @return [Array] all anvil tasks in the given path
     def self.files_from_path(path)
       Dir[path + '/tasks/**/*_task.rb']
     end
 
+    # @return [Array] anvil tasks installed in gems
     def self.files_from_gems
       Gem.find_latest_files 'anvil/tasks/**/*_task.rb'
     end
 
+    # @return [Array] all known anvil task files
     def self.all_files
       [files_from_anvil,
        files_from_current_project,
        files_from_gems].compact.reduce(&:+).uniq
     end
 
+    # @return [Array] all known {Anvil::Task} desdendants
     def self.all_tasks
       load_tasks unless @tasks_loaded
       ::Anvil::Task.descendants
