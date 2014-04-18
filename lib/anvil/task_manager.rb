@@ -45,7 +45,9 @@ module Anvil
     # @return [Array] anvil tasks in the specified dir
     def self.files_from_env
       if ENV['ANVIL_TASKS_DIR']
-        Dir["#{ENV['ANVIL_TASKS_DIR']}/*_task.rb"]
+        env_dir_list = ENV['ANVIL_TASKS_DIR'].split(':').join(',')
+
+        Dir["{#{env_dir_list}}/*_task.rb"]
       else
         []
       end
