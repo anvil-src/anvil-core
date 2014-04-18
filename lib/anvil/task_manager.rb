@@ -42,9 +42,19 @@ module Anvil
       Gem.find_latest_files 'anvil/tasks/**/*_task.rb'
     end
 
+    # @return [Array] anvil tasks in the specified dir
+    def self.files_from_env
+      if ENV['ANVIL_TASKS_DIR']
+        Dir["#{ENV['ANVIL_TASKS_DIR']}/*_task.rb"]
+      else
+        []
+      end
+    end
+
     # @return [Array] all known anvil task files
     def self.all_files
-      [files_from_anvil,
+      [files_from_env,
+       files_from_anvil,
        files_from_current_project,
        files_from_gems].compact.reduce(&:+).uniq
     end
