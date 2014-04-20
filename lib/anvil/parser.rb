@@ -14,7 +14,7 @@ module Anvil
 
     def arguments(args = nil)
       return @arguments if @arguments
-      @arguments = args if args
+      @arguments = [args.presence].compact.flatten
     end
 
     def banner
