@@ -4,7 +4,7 @@ class HelpTask < Anvil::Task
   description 'Help for the anvil tasks. Usage: anvil help TASK'
 
   parser do
-    arguments %w[task_name]
+    arguments %w(task_name)
   end
 
   attr_reader :task_name
