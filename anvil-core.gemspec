@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'anvil-core'
   spec.version       = Anvil::VERSION
   spec.authors       = ['Fran Casas', 'Jon de Andres']
-  spec.email         = %w(nflamel@otrobloggeek.com jondeandres@gmail.com)
+  spec.email         = %w(nflamel@gmail.com jondeandres@gmail.com)
   spec.description   = 'Anvil is a tool for building tools.'
   spec.summary       = <<SUMMARY
 Anvil is a tool for building tools. A tool that a real craftsmen uses
@@ -23,11 +23,12 @@ SUMMARY
   spec.require_paths = %w(lib)
 
   # Runtime dependencies
-  spec.add_runtime_dependency     'git',           '~> 1.2'
-  spec.add_runtime_dependency     'activesupport', '~> 4.0'
-  spec.add_runtime_dependency     'mixlib-config', '~> 2.1'
-  spec.add_runtime_dependency     'cocaine',       '~> 0.5'
-  spec.add_runtime_dependency     'semantic',      '~> 1.3'
+  spec.add_runtime_dependency 'git',   '~> 1.2'
+  spec.add_runtime_dependency 'activesupport', '~> 4.0'
+  spec.add_runtime_dependency 'mixlib-config', '~> 2.1'
+  spec.add_runtime_dependency 'cocaine',   '~> 0.5'
+  spec.add_runtime_dependency 'semantic',  '~> 1.3'
+  spec.add_runtime_dependency 'rugged',    '~> 0.19'
 
   # Development dependencies
   spec.add_development_dependency 'bundler', '~> 1.5'
