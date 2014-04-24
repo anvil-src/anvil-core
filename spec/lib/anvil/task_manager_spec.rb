@@ -55,6 +55,14 @@ describe Anvil::TaskManager do
     end
   end
 
+  describe '.files_from_env' do
+    context 'with empty env variable' do
+      it 'returns an empty array' do
+        expect(described_class.files_from_env).to eq([])
+      end
+    end
+  end
+
   describe '.load_tasks' do
     let(:all_files) { %w[file1 file2] }
 

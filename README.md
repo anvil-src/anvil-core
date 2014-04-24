@@ -4,12 +4,11 @@ Anvil is a tool for the real craftsmen to build its own tools.
 
 [![Build Status](https://travis-ci.org/anvil-src/anvil-core.png?branch=master)](https://travis-ci.org/anvil-src/anvil-core)
 
-
 Anvil tries to be a framework for building command line applications
 to automate tedious tasks like apps or gems releasing process. Pull
 request updating, etc.
 
-It's purpose is to provide an easy to use Object Oriented framework
+It's purpose is to provide an easy to use Object Oriented toolset
 that developers can use to automate par of its day to day work.
 
 Things like:
@@ -18,6 +17,14 @@ Things like:
   * Installing your dot files
   * Doing complex build which involve several projects and branches.
   * Any other stuff you might want.
+
+## Sample tasks
+
+You can find some sample tasks in the samples directory, if you want to give them a try, clone this project and do:
+
+```shell
+ANVIL_TASKS_DIR=./sample bin/anvil
+```
 
 ## Installation
 
