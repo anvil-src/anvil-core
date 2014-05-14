@@ -21,6 +21,33 @@ describe Anvil::TaskManager do
     end
   end
 
+  describe '.current_project_path' do
+    let(:pwd) { '/home/user/src/project/' }
+    context 'on a path managed by git' do
+      before do
+        Rugged::Repository.stub(:discover)
+          .and_return(pwd + '.git/')
+      end
+
+      it 'returns the repo workdir' do
+        expect(described_class.current_project_path)
+          .to eq(pwd)
+      end
+    end
+
+    context 'on a path not managed by git' do
+      before do
+        Rugged::Repository.stub(:discover)
+          .and_raise(Rugged::RepositoryError)
+      end
+
+      it 'returns an empty string' do
+        expect(described_class.current_project_path)
+          .to be_empty
+      end
+    end
+  end
+
   describe '.files_from_gems' do
     it 'asks Gem to return the anvil tasks' do
       expect(Gem).to receive(:find_latest_files).with('anvil/tasks/**/*_task.rb')

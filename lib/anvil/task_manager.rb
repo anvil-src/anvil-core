@@ -1,8 +1,9 @@
 # encoding: UTF-8
 
+require 'rubygems'
 require 'anvil/config'
 require 'anvil/task'
-require 'rubygems'
+require 'rugged'
 
 module Anvil
   # Manage loading and finding anvil tasks
@@ -28,7 +29,9 @@ module Anvil
 
     # @return [String] top level dir if this is a git managed project
     def self.current_project_path
-      %x{git rev-parse --show-toplevel}.strip
+      Rugged::Repository.discover(ENV['PWD']).gsub('.git/', '')
+    rescue Rugged::RepositoryError
+      ''
     end
 
     # @param path [String] a path to glob their anvil tasks
