@@ -5,13 +5,18 @@ class Gem::BumpTask < Anvil::Task
   description "Bumps a gem's version"
 
   parser do
-    arguments %w[term]
+    arguments %w(term)
+
+    on('-p', '--[no-]persist', 'Commit tag and push the changes') do |p|
+      options[:push] = p
+    end
   end
 
   attr_reader :term
 
   def initialize(term, options = {})
-    @term = term
+    @term = term.to_sym
+    @options = options
   end
 
   def task
@@ -58,7 +63,7 @@ class Gem::BumpTask < Anvil::Task
       f.close
     end
 
-    commit_and_tag version
+    commit_and_tag version if options[:persist]
   end
 
   def prepare_repo

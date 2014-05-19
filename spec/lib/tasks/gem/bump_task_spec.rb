@@ -4,7 +4,7 @@ require 'git'
 require 'anvil'
 
 describe Gem::BumpTask do
-  subject { Gem::BumpTask.new :major }
+  subject { Gem::BumpTask.new 'major' }
 
   describe '#task' do
     before  { subject.stub(:read_version).and_return('2.0.0') }
@@ -18,9 +18,19 @@ describe Gem::BumpTask do
   end
 
   describe '#write_version' do
-    it 'writes the file and push the changes' do
-      expect(subject).to receive(:version_file).with('w+')
-      expect(subject).to receive(:commit_and_tag)
+    context 'when persisting' do
+      subject { Gem::BumpTask.new 'major', persist: true }
+      it 'writes the file and push the changes' do
+        expect(subject).to receive(:version_file).with('w+')
+        expect(subject).to receive(:commit_and_tag)
+      end
+    end
+
+    context 'when no persisting' do
+      it 'writes the file but does not persist the change in git' do
+        expect(subject).to receive(:version_file).with('w+')
+        expect(subject).to_not receive(:commit_and_tag)
+      end
     end
 
     after { subject.send :write_version, '2.0.0' }
