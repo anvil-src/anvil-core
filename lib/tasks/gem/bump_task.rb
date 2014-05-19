@@ -8,7 +8,7 @@ class Gem::BumpTask < Anvil::Task
     arguments %w(term)
 
     on('-p', '--[no-]persist', 'Commit tag and push the changes') do |p|
-      options[:push] = p
+      options[:persist] = p
     end
   end
 
