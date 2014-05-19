@@ -12,6 +12,7 @@ class Gem::BumpTask < Anvil::Task
 
   def initialize(term, options = {})
     @term = term
+    @term = term.to_sym
   end
 
   def task
