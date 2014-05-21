@@ -29,7 +29,7 @@ module Anvil
 
     # @return [String] top level dir if this is a git managed project
     def self.current_project_path
-      Rugged::Repository.discover(ENV['PWD']).gsub('.git/', '')
+      Rugged::Repository.discover(Dir.pwd).gsub('.git/', '')
     rescue Rugged::RepositoryError
       ''
     end
