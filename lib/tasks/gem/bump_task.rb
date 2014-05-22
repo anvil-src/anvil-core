@@ -7,8 +7,12 @@ class Gem::BumpTask < Anvil::Task
   parser do
     arguments %w(term)
 
-    on('-p', '--[no-]persist', 'Commit tag and push the changes') do |p|
-      options[:persist] = p
+    on('-p', '--persist', 'Commit tag and push the changes') do |p|
+      options[:persist] = true
+    end
+
+    on('-f', '--force', 'Act even if the git repo is not clean') do |f|
+      options[:force] = true
     end
   end
 
@@ -30,7 +34,7 @@ class Gem::BumpTask < Anvil::Task
   protected
 
   def git
-    @git ||= Git.open ENV['PWD']
+    @git ||= Git.open Dir.pwd
   end
 
   def version_file(mode = 'r')
@@ -67,14 +71,20 @@ class Gem::BumpTask < Anvil::Task
   end
 
   def prepare_repo
-    fail Anvil::RepoNotClean unless clean?
-
-    git.pull
+    if clean? || force?
+      git.pull
+    else
+      fail Anvil::RepoNotClean
+    end
   end
 
   def clean?
     git.status.changed.empty? &&
       git.status.deleted.empty? &&
       git.status.added.empty?
+  end
+
+  def force?
+    options[:force]
   end
 end
