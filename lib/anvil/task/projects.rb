@@ -17,6 +17,12 @@ module Anvil
         end
       end
 
+      def on_each_project(projects)
+        projects.each do |project|
+          on_project(project) { |project_git| yield project_git }
+        end
+      end
+
       protected
 
       def git

@@ -45,4 +45,15 @@ describe Anvil::Task::Projects, fakefs: true do
       expect { |b| subject.on_project(project, &b) }.to yield_with_args
     end
   end
+
+  describe '#on_each_project' do
+    let(:projects) { %w(anvil-core anvil-plugins) }
+    before do
+      expect(subject).to receive(:on_project).twice.and_yield(double('git'))
+    end
+
+    it 'works on each project' do
+      expect { |b| subject.on_each_project(projects, &b) }.to yield_control.twice
+    end
+  end
 end
