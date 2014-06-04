@@ -5,3 +5,6 @@ rvm:
   - 2.0.0
   - 1.9.3
 gemfile: Gemfile.ci
+addons:
+  code_climate:
+    repo_token: 4a55fc96d9718c57e3b43ea5912832e4c318669be4160a48d529b8152f27bd55

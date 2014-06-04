@@ -8,6 +8,11 @@
 require 'fakefs/spec_helpers'
 require 'anvil'
 
+begin
+  require 'codeclimate-test-reporter'
+  CodeClimate::TestReporter.start
+rescue LoadError; end
+
 Dir["#{File.dirname(__FILE__)}/support/fixtures/**/*.rb"].each { |f| require f }
 Dir["#{File.dirname(__FILE__)}/support/shared/**/*.rb"].each { |f| require f }
 
