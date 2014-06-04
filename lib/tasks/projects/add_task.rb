@@ -21,6 +21,7 @@ module Projects
 
     def task
       url_to_clone = resolve_url(repo)
+      logger.info "Clonning #{repo} on anvil's projects folder."
       clone_repo(url_to_clone, name)
     end
 
