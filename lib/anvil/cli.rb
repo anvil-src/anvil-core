@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-require 'anvil/task_manager'
+require 'anvil/extensions_manager'
 require 'tasks/help_task'
 
 module Anvil
@@ -27,7 +27,7 @@ HELP
     end
 
     def load_tasks
-      Anvil::TaskManager.load_tasks
+      Anvil::ExtensionsManager.load_tasks
     end
 
     # Builds a task and prepares it to run
@@ -59,7 +59,7 @@ HELP
 
     def print_help
       printf('%s', HELP)
-      tasks = Anvil::TaskManager.tasks_by_name
+      tasks = Anvil::ExtensionsManager.tasks_by_name
       tasks.each { |task| print_task_line(task) }
     end
 

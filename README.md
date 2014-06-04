@@ -23,7 +23,7 @@ Things like:
 You can find some sample tasks in the samples directory, if you want to give them a try, clone this project and do:
 
 ```shell
-ANVIL_TASKS_DIR=./sample bin/anvil
+ANVIL_EXTENSIONS_DIR=./sample bin/anvil
 ```
 
 ## Installation

@@ -2,6 +2,7 @@
 
 require 'mixlib/config'
 require 'anvil/config/class_methods'
+require 'anvil/extensions_manager'
 require 'gem_ext/mixlib'
 
 module Anvil
@@ -9,10 +10,6 @@ module Anvil
   module Config
     extend Mixlib::Config
     extend Anvil::Config::ClassMethods
-
-    config_context :github do
-      configurable :user
-      configurable :token
-    end
   end
 end
+Anvil::ExtensionsManager.load_config_extensions
