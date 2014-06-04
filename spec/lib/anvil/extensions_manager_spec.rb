@@ -1,27 +1,27 @@
 require 'spec_helper'
-require 'anvil/task_manager'
+require 'anvil/extensions_manager'
 
-describe Anvil::TaskManager do
-  describe '.all_tasks' do
+describe Anvil::ExtensionsManager do
+  describe '#all_tasks' do
     it 'returns the Anvil::Task descendants' do
       expect(::Anvil::Task).to receive(:descendants)
-      described_class.all_tasks
+      subject.all_tasks
     end
   end
 
-  describe '.files_from_current_project' do
-    let(:gemfile_path) { described_class.current_project_path }
+  describe '#files_from_current_project' do
+    let(:gemfile_path) { subject.send :current_project_path }
     let(:project_task_path) { gemfile_path + '/lib/anvil/' }
 
     it 'returns the task files in the path' do
-      expect(described_class)
-        .to receive(:files_from_path).with(project_task_path)
+      expect(subject)
+        .to receive(:files_from_path).with(project_task_path, :tasks)
 
-      described_class.files_from_current_project
+      subject.files_from_current_project(:tasks)
     end
   end
 
-  describe '.current_project_path' do
+  describe 'current_project_path' do
     let(:pwd) { '/home/user/src/project/' }
     context 'on a path managed by git' do
       before do
@@ -30,7 +30,7 @@ describe Anvil::TaskManager do
       end
 
       it 'returns the repo workdir' do
-        expect(described_class.current_project_path)
+        expect(subject.send(:current_project_path))
           .to eq(pwd)
       end
     end
@@ -42,39 +42,40 @@ describe Anvil::TaskManager do
       end
 
       it 'returns an empty string' do
-        expect(described_class.current_project_path)
+        expect(subject.send(:current_project_path))
           .to be_empty
       end
     end
   end
 
-  describe '.files_from_gems' do
+  describe '#files_from_gems' do
     it 'asks Gem to return the anvil tasks' do
-      expect(Gem).to receive(:find_latest_files).with('anvil/tasks/**/*_task.rb')
-      described_class.files_from_gems
+      expect(Gem)
+        .to receive(:find_latest_files).with('anvil/tasks/**/*_task.rb')
+      subject.files_from_gems(:tasks)
     end
   end
 
-  describe '.files_from_env' do
+  describe '#files_from_env' do
     context 'with empty env variable' do
       it 'returns an empty array' do
-        expect(described_class.files_from_env).to eq([])
+        expect(subject.files_from_env(:tasks)).to eq([])
       end
     end
   end
 
-  describe '.load_tasks' do
+  describe '#load_tasks' do
     let(:all_files) { %w[file1 file2] }
 
     before do
-      described_class.stub(:all_files).and_return(all_files)
+      allow(subject).to receive(:all_files_for).and_return(all_files)
     end
 
     it 'loads the files' do
-      expect(described_class).to receive(:load).with(all_files[0])
-      expect(described_class).to receive(:load).with(all_files[1])
+      expect(subject).to receive(:load).with(all_files[0])
+      expect(subject).to receive(:load).with(all_files[1])
 
-      described_class.load_tasks
+      subject.load_tasks
     end
   end
 end

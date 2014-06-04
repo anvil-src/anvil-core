@@ -33,7 +33,7 @@ module Anvil
         FileUtils.mkdir_p(base_path)
         FileUtils.mkdir_p(base_tasks_path)
         FileUtils.mkdir_p(base_projects_path)
-        FileUtils.touch(base_config_path) unless File.exists?(base_config_path)
+        FileUtils.touch(base_config_path) unless File.exist?(base_config_path)
       end
 
       def init_config
