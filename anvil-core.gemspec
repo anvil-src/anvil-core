@@ -24,7 +24,7 @@ SUMMARY
 
   # Runtime dependencies
   spec.add_runtime_dependency 'git',   '~> 1.2'
-  spec.add_runtime_dependency 'activesupport', '~> 4.0.0'
+  spec.add_runtime_dependency 'activesupport', '~> 4.1'
   spec.add_runtime_dependency 'mixlib-config', '~> 2.1'
   spec.add_runtime_dependency 'cocaine',   '~> 0.5'
   spec.add_runtime_dependency 'semantic',  '~> 1.3'
