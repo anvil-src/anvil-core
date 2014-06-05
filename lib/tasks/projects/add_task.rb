@@ -14,7 +14,7 @@ module Projects
 
     attr_reader :name, :repo
 
-    def initialize(name, repo, options = {})
+    def initialize(name, repo, _ = {})
       @name = name
       @repo = repo
     end
