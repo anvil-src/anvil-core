@@ -13,6 +13,11 @@ module Anvil
         log_project_does_not_exists project
       end
 
+      # Yields a block in which PWD is the folder of a project managed
+      # by anvil.
+      #
+      # @param [String] project the name of a project managed by anvil
+      # @return [Object] anything returned by the yielded block
       def on_project(project)
         Dir.chdir(project_path(project)) do
           yield(git)
@@ -21,8 +26,13 @@ module Anvil
         log_project_does_not_exists project
       end
 
+      # Runs on_project on an array of projects
+      #
+      # @param [Array] projects an array of projects managed by anvil
+      # @return [Array] an array with the values returned by each
+      #   on_project run
       def on_each_project(projects)
-        projects.each do |project|
+        projects.map do |project|
           on_project(project) { |project_git| yield project, project_git }
         end
       end
