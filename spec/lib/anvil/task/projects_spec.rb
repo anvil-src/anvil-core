@@ -44,6 +44,12 @@ describe Anvil::Task::Projects, fakefs: true do
     it 'yields a git project object' do
       expect { |b| subject.on_project(project, &b) }.to yield_with_args
     end
+
+    it 'returns the same thing returned by the yielded block' do
+      return_value = 'return-value'
+
+      expect(subject.on_project(project) { return_value }).to eq(return_value)
+    end
   end
 
   describe '#on_each_project' do
@@ -53,7 +59,8 @@ describe Anvil::Task::Projects, fakefs: true do
     end
 
     it 'works on each project' do
-      expect { |b| subject.on_each_project(projects, &b) }.to yield_control.twice
+      expect { |b| subject.on_each_project(projects, &b) }
+        .to yield_control.twice
     end
   end
 end
