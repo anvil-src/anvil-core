@@ -3,6 +3,7 @@
 require 'anvil/task/class_methods'
 require 'anvil/task/naming'
 require 'anvil/task/options'
+require 'anvil/task/callback'
 
 module Anvil
   # Common class for all tasks
@@ -37,9 +38,7 @@ module Anvil
     protected
 
     def run_after_callbacks
-      self.class.afters.each do |after|
-        after[0].new(after[1]).run
-      end
+      self.class.afters.each { |callback| callback.run }
     end
 
     def run_assures
@@ -47,9 +46,7 @@ module Anvil
     end
 
     def run_before_callbacks
-      self.class.befores.each do |before|
-        before[0].new(before[1]).run
-      end
+      self.class.befores.each { |callback| callback.run }
     end
 
     def run_task

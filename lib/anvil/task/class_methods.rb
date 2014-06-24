@@ -18,7 +18,7 @@ module Anvil
       end
 
       def after(task_name, options = {})
-        afters << [from_name(task_name), options]
+        afters << Callback.new(task_name, options)
       end
 
       def assure(assure_name)
@@ -26,7 +26,7 @@ module Anvil
       end
 
       def before(task_name, options = {})
-        befores << [from_name(task_name), options]
+        befores << Callback.new(task_name, options)
       end
 
       def run(*args)
