@@ -10,8 +10,10 @@ describe Anvil::Task do
   describe '.after' do
     before { dummy_task.class_eval { after :dummy_after, argument: 'value' } }
 
+    subject(:afters) { dummy_task.afters }
     it 'adds DummyBeforeTask to the after callbacks' do
-      dummy_task.afters.should include([after_task, arguments])
+      afters.first.should be_an_instance_of Anvil::Task::Callback
+      afters.first.task.should be DummyAfterTask
     end
   end
 
@@ -28,8 +30,10 @@ describe Anvil::Task do
       dummy_task.class_eval { before :dummy_before, argument: 'value' }
     end
 
+    subject(:befores) { dummy_task.befores }
     it 'adds DummyBeforeTask to the before callbacks' do
-      dummy_task.befores.should include([before_task, arguments])
+      befores.first.should be_an_instance_of Anvil::Task::Callback
+      befores.first.task.should be DummyBeforeTask
     end
   end
 
