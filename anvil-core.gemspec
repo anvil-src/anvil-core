@@ -22,6 +22,9 @@ SUMMARY
   spec.test_files    = Dir['spec/**/*']
   spec.require_paths = %w(lib)
 
+  # Rubygems version dependency
+  spec.required_rubygems_version = '>= 2.1.0'
+
   # Runtime dependencies
   spec.add_runtime_dependency 'git',   '~> 1.2'
   spec.add_runtime_dependency 'activesupport', '~> 4.1'
