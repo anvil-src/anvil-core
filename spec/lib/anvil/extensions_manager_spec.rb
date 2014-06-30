@@ -26,7 +26,7 @@ describe Anvil::ExtensionsManager do
     context 'on a path managed by git' do
       before do
         Rugged::Repository.stub(:discover)
-          .and_return(pwd + '.git/')
+          .and_return(double(path: "#{pwd}.git/"))
       end
 
       it 'returns the repo workdir' do
