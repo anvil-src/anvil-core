@@ -1,6 +1,7 @@
 # encoding: UTF-8
 
 require 'anvil/version'
+require 'active_support'
 require 'active_support/core_ext'
 
 # Main anvil module
