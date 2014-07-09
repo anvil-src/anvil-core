@@ -1,3 +1,4 @@
+require 'anvil'
 require 'semantic/version'
 
 module Anvil
