@@ -49,14 +49,14 @@ HELP_HEADER
     end
 
     def task_not_found(task_name = nil)
-      printf("Task '#{task_name}' not found\n")
-      printf("Maybe you mean one of the following\n") if task_name
-      printf("\n")
+      Anvil.logger.info "Task '#{task_name}' not found"
+      Anvil.logger.info("Maybe you mean one of the following") if task_name
+      Anvil.logger.info("\n")
       print_help_body task_name
     end
 
     def bad_arguments(task_name)
-      printf("Wrong number of arguments.\n\n")
+      Anvil.logger.info("Wrong number of arguments.\n")
       HelpTask.run(task_name)
     end
 
@@ -76,11 +76,12 @@ HELP_HEADER
     end
 
     def print_task_line(task)
-      printf("%-20s %s\n", task.task_name, task.description)
+      message = "%-20s %s" % [task.task_name, task.description]
+      Anvil.logger.info message
     end
 
     def print_help_header
-      printf('%s', HELP_HEADER)
+      Anvil.logger.info HELP_HEADER
     end
   end
 end
