@@ -6,11 +6,11 @@ require 'tasks/help_task'
 module Anvil
   # Anvil command line interface
   class Cli
-    HELP = <<-HELP
+    HELP_HEADER = <<-HELP_HEADER
 Anvil is a tool for making your life easier.
 
 Available tasks:
-HELP
+HELP_HEADER
 
     # Runs a task or prints its help if it needs arguments
     #
@@ -20,7 +20,8 @@ HELP
       load_tasks
 
       if argv.empty?
-        print_help
+        print_help_header
+        print_help_body
       else
         build_task(argv).run
       end
@@ -41,30 +42,43 @@ HELP
       klazz.new(*klazz.parse_options!(arguments))
     rescue NameError
       task_not_found(task_name)
-      exit(FALSE)
+      exit false
     rescue ArgumentError
-      help(task_name)
-      exit(FALSE)
+      bad_arguments(task_name)
+      exit false
     end
 
-    def task_not_found(task_name)
-      printf("Task '#{task_name}' not found\n\n")
-      print_help
+    def task_not_found(task_name = nil)
+      printf("Task '#{task_name}' not found\n")
+      printf("Maybe you mean one of the following\n") if task_name
+      printf("\n")
+      print_help_body task_name
     end
 
-    def help(task_name)
+    def bad_arguments(task_name)
       printf("Wrong number of arguments.\n\n")
       HelpTask.run(task_name)
     end
 
-    def print_help
-      printf('%s', HELP)
+    def print_help_body(task_name = nil)
+      task_list(task_name).each { |task| print_task_line(task) }
+    end
+
+    def task_list(task_name)
       tasks = Anvil::ExtensionsManager.tasks_by_name
-      tasks.each { |task| print_task_line(task) }
+      if task_name
+        tasks.select { |task| task.to_s.underscore =~ /#{task_name}/ }
+      else
+        tasks
+      end
     end
 
     def print_task_line(task)
       printf("%-20s %s\n", task.task_name, task.description)
+    end
+
+    def print_help_header
+      printf('%s', HELP_HEADER)
     end
   end
 end
