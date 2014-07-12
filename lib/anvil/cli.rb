@@ -66,11 +66,13 @@ HELP_HEADER
 
     def task_list(task_name)
       tasks = Anvil::ExtensionsManager.tasks_by_name
-      if task_name
-        tasks.select { |task| task.to_s.underscore =~ /#{task_name}/ }
-      else
-        tasks
-      end
+      list = if task_name
+               tasks.select { |task| task.to_s.underscore =~ /#{task_name}/ }
+             else
+               tasks
+             end
+
+      list.empty? ? tasks : list
     end
 
     def print_task_line(task)
