@@ -33,7 +33,7 @@ describe Anvil::Task::Projects, fakefs: true do
   end
 
   describe '#on_project' do
-    before { subject.stub(:git).and_return(double('git')) }
+    before { allow(subject).to receive(:git).and_return(double('git')) }
 
     it 'keeps the project changed inside the block' do
       subject.on_project project do

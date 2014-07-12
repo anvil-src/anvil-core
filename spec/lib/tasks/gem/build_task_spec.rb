@@ -49,7 +49,7 @@ describe Gem::BuildTask do
     let(:gem_file) { 'alfred.gem' }
 
     before do
-      Anvil::Rubygems.stub(:build) do
+      allow(Anvil::Rubygems).to receive(:build) do
         FileUtils.touch('anvil-2.0.0.gem')
 
         output
@@ -59,7 +59,7 @@ describe Gem::BuildTask do
     it 'builds the gem' do
       subject.build_gem(gem_file)
 
-      expect(File.exists?('pkg/anvil-2.0.0.gem')).to be_true
+      expect(File.exists?('pkg/anvil-2.0.0.gem')).to be_truthy
     end
 
     it 'returns the gem file path' do

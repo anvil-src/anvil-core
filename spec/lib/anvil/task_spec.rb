@@ -12,8 +12,8 @@ describe Anvil::Task do
 
     subject(:afters) { dummy_task.afters }
     it 'adds DummyBeforeTask to the after callbacks' do
-      afters.first.should be_an_instance_of Anvil::Task::Callback
-      afters.first.task.should be DummyAfterTask
+      expect(afters.first).to be_an_instance_of(Anvil::Task::Callback)
+      expect(afters.first.task).to be(DummyAfterTask)
     end
   end
 
@@ -21,7 +21,7 @@ describe Anvil::Task do
     before { dummy_task.class_eval { assure :dummy } }
 
     it 'adds DummyAssure to the assures' do
-      dummy_task.assures.should include(assure)
+      expect(dummy_task.assures).to include(assure)
     end
   end
 
@@ -32,8 +32,8 @@ describe Anvil::Task do
 
     subject(:befores) { dummy_task.befores }
     it 'adds DummyBeforeTask to the before callbacks' do
-      befores.first.should be_an_instance_of Anvil::Task::Callback
-      befores.first.task.should be DummyBeforeTask
+      expect(befores.first).to be_an_instance_of(Anvil::Task::Callback)
+      expect(befores.first.task).to be(DummyBeforeTask)
     end
   end
 
@@ -47,31 +47,36 @@ describe Anvil::Task do
     subject { dummy_task.new }
 
     context 'with a passing assure' do
-      before { dummy_task.stub(:assures).and_return([DummyAssure]) }
+      before do
+        allow(dummy_task).to receive(:assures).and_return([DummyAssure])
+      end
 
       it 'runs the callbacks and the task' do
-        subject.should_receive(:run_before_callbacks)
-        subject.should_receive(:run_after_callbacks)
-        subject.should_receive(:run_task)
+        expect(subject).to receive(:run_before_callbacks)
+        expect(subject).to receive(:run_after_callbacks)
+        expect(subject).to receive(:run_task)
         subject.run
       end
     end
 
     context 'with a non passing assure' do
-      before { dummy_task.stub(:assures).and_return([DummyFailedAssure]) }
+      before do
+        allow(dummy_task).to receive(:assures).and_return([DummyFailedAssure])
+      end
 
       it 'does not run the callbacks nor the task' do
-        subject.should_not_receive(:run_before_callbacks)
-        subject.should_not_receive(:run_after_callbacks)
-        subject.should_not_receive(:run_task)
+        expect(subject).to_not receive(:run_before_callbacks)
+        expect(subject).to_not receive(:run_after_callbacks)
+        expect(subject).to_not receive(:run_task)
         subject.run
       end
     end
   end
 
   describe '.run' do
+    let(:task) { double run: true }
     it 'calls run in a instance of the task' do
-      dummy_task.any_instance.should_receive(:run)
+      expect(described_class).to receive(:new).and_return(task)
       dummy_task.run(1, 2)
     end
   end

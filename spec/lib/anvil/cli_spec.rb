@@ -8,9 +8,9 @@ describe Anvil::Cli do
 
     context 'with a task name' do
       before do
-        dummy_task.should_receive(:new)
+        expect(dummy_task).to receive(:new)
           .with('arg1', 'arg2', argument: 'value').and_call_original
-        subject.should_not_receive(:print_help)
+        expect(subject).to_not receive(:print_help)
       end
 
       it('runs the task in the first parameter') { subject.run argv }
@@ -18,7 +18,7 @@ describe Anvil::Cli do
 
     describe '#build_task' do
       it 'builds the task and parses the arguments' do
-        subject.build_task(argv).options.should == { argument: 'value' }
+        expect(subject.build_task(argv).options).to eq({ argument: 'value' })
       end
 
       context 'if the task is not found' do
@@ -47,7 +47,7 @@ describe Anvil::Cli do
 
     context 'without a task name' do
       let(:argv)            { [] }
-      before                { subject.should_receive(:print_help) }
+      before                { expect(subject).to receive(:print_help) }
       it('prints the help') { subject.run argv }
     end
   end

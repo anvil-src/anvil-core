@@ -13,13 +13,13 @@ describe Anvil::Task::Naming do
   describe '.from_name' do
     context 'without a namespace' do
       it 'finds the task class' do
-        klass.from_name('dummy').should eq(DummyTask)
+        expect(klass.from_name('dummy')).to eq(DummyTask)
       end
     end
 
     context 'with a namespace' do
       it 'finds the namespaced tasks class' do
-        klass.from_name('foo:dummy').should eq(Foo::DummyTask)
+        expect(klass.from_name('foo:dummy')).to eq(Foo::DummyTask)
       end
     end
   end

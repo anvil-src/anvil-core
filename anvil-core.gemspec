@@ -35,7 +35,8 @@ SUMMARY
 
   # Development dependencies
   spec.add_development_dependency 'bundler', '~> 1.5'
-  spec.add_development_dependency 'rspec',   '~> 2.14'
+  spec.add_development_dependency 'rspec',   '~> 3.0'
+  spec.add_development_dependency 'rspec-its'
   spec.add_development_dependency 'fakefs',  '~> 0.5'
   spec.add_development_dependency 'rubocop', '~> 0.18'
 end

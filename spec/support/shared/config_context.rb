@@ -6,7 +6,7 @@ shared_context 'init anvil config', config: true do
   end
 
   before do
-    Anvil::Config.stub(:base_path).and_return(test_config_path)
+    allow(Anvil::Config).to receive(:base_path).and_return(test_config_path)
     Anvil::Config.init
   end
 end
