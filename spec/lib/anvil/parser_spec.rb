@@ -7,7 +7,7 @@ describe Anvil::Parser do
 
   describe '#from' do
     before do
-      task.stub(:parser_block).and_return(proc { 'opts' })
+      allow(task).to receive(:parser_block).and_return(proc { 'opts' })
     end
 
     it 'inherits parser block from another task' do

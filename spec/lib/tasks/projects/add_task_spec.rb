@@ -18,7 +18,7 @@ describe Projects::AddTask do
 
   describe '#clone_repo', config: true do
     it 'clones the repo with Git' do
-      Git.should_receive(:clone)
+      expect(Git).to receive(:clone)
 
       subject.clone_repo(repo_url, 'repo')
     end

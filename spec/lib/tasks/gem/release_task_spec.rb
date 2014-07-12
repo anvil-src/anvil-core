@@ -10,12 +10,12 @@ describe Gem::ReleaseTask do
 
   describe '#task' do
     before do
-      subject.stub(:bump).and_return(version)
-      subject.stub(:build).and_return(gem_file)
+      allow(subject).to receive(:bump).and_return(version)
+      allow(subject).to receive(:build).and_return(gem_file)
     end
 
     it 'pushes the gem to rubygems' do
-      subject.should_receive(:push).with(gem_file, version)
+      expect(subject).to receive(:push).with(gem_file, version)
     end
 
     after { subject.task }

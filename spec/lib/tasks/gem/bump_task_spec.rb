@@ -7,7 +7,7 @@ describe Gem::BumpTask do
   subject { Gem::BumpTask.new 'major' }
 
   describe '#task' do
-    before  { subject.stub(:read_version).and_return('2.0.0') }
+    before  { allow(subject).to receive(:read_version).and_return('2.0.0') }
 
     it 'bumps the version and writes it' do
       expect(subject).to receive(:prepare_repo).and_return(true)
@@ -39,8 +39,8 @@ describe Gem::BumpTask do
   describe '#prepare_repo' do
     context 'on a clean repo' do
       before do
-        subject.stub(:clean?).and_return(true)
-        subject.stub(:git).and_return(double)
+        allow(subject).to receive(:clean?).and_return(true)
+        allow(subject).to receive(:git).and_return(double)
       end
 
       it 'pulls' do
@@ -51,7 +51,7 @@ describe Gem::BumpTask do
     end
 
     context 'on a dirty repo' do
-      before { subject.stub(:clean?).and_return(false) }
+      before { allow(subject).to receive(:clean?).and_return(false) }
 
       it 'raises RepoNotClean' do
         expect do

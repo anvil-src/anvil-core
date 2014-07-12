@@ -25,7 +25,7 @@ describe Anvil::ExtensionsManager do
     let(:pwd) { '/home/user/src/project/' }
     context 'on a path managed by git' do
       before do
-        Rugged::Repository.stub(:discover)
+        allow(Rugged::Repository).to receive(:discover)
           .and_return(double(path: "#{pwd}.git/"))
       end
 
@@ -37,7 +37,7 @@ describe Anvil::ExtensionsManager do
 
     context 'on a path not managed by git' do
       before do
-        Rugged::Repository.stub(:discover)
+        allow(Rugged::Repository).to receive(:discover)
           .and_raise(Rugged::RepositoryError)
       end
 
