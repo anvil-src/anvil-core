@@ -19,12 +19,10 @@ HELP_HEADER
     def run(argv)
       load_tasks
 
-      if argv.empty?
-        print_help_header
-        print_help_body
-      else
-        build_task(argv).run
-      end
+      return build_task(argv).run unless argv.empty?
+
+      print_help_header
+      print_help_body
     end
 
     def load_tasks
@@ -50,7 +48,7 @@ HELP_HEADER
 
     def task_not_found(task_name = nil)
       Anvil.logger.info "Task '#{task_name}' not found"
-      Anvil.logger.info("Maybe you mean one of the following") if task_name
+      Anvil.logger.info('Maybe you mean one of the following') if task_name
       Anvil.logger.info("\n")
       print_help_body task_name
     end
@@ -66,17 +64,13 @@ HELP_HEADER
 
     def task_list(task_name)
       tasks = Anvil::ExtensionsManager.tasks_by_name
-      list = if task_name
-               tasks.select { |task| task.to_s.underscore =~ /#{task_name}/ }
-             else
-               tasks
-             end
 
-      list.empty? ? tasks : list
+      return tasks unless task_name
+      tasks.select { |task| task.to_s.underscore =~ /#{task_name}/ }
     end
 
     def print_task_line(task)
-      message = "%-20s %s" % [task.task_name, task.description]
+      message = format '%-20s %s', task.task_name, task.description
       Anvil.logger.info message
     end
 
