@@ -32,6 +32,8 @@ module Anvil
           parser.separator description
         end
 
+        return parser unless parser.detect_options(&block)
+
         parser.separator ''
         parser.separator 'Available options: '
         parser.instance_eval(&block)
