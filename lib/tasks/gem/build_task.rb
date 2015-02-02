@@ -6,7 +6,7 @@ class Gem::BuildTask < Anvil::Task
   description 'Builds a gem for you and can install it on your system.'
 
   parser do
-    arguments %w[gemspec_file]
+    arguments %w(gemspec_file)
 
     on('-i', '--[no-]install', 'Install gem') do |i|
       options[:install] = i

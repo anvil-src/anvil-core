@@ -16,10 +16,10 @@ class HelpTask < Anvil::Task
   def task
     return default_message unless task_name.present?
     klazz = Anvil::Task.from_name(task_name)
-    printf(klazz.help)
+    Anvil.logger.info(klazz.help)
   end
 
   def default_message
-    printf(self.class.help)
+    Anvil.logger.info(self.class.help)
   end
 end

@@ -1,6 +1,7 @@
 # encoding: UTF-8
 
 require 'anvil/task'
+require 'anvil/options_detector'
 
 module Anvil
   # Parser for anvil command line arguments and options
@@ -38,6 +39,10 @@ module Anvil
     def from(name)
       task_klass = Anvil::Task.from_name(name)
       instance_eval(&task_klass.parser_block) if task_klass.parser_block
+    end
+
+    def detect_options(&block)
+      OptionsDetector.new.detect_options(&block)
     end
   end
 end

@@ -22,13 +22,12 @@ module Anvil
     #
     # @return [Object, nil] anything the task might return
     def run
-      if run_assures
-        run_before_callbacks
-        task_return_value = run_task
-        run_after_callbacks
+      return unless run_assures
+      run_before_callbacks
+      task_return_value = run_task
+      run_after_callbacks
 
-        task_return_value
-      end
+      task_return_value
     end
 
     def logger
