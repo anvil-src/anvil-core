@@ -63,7 +63,7 @@ describe Gem::BuildTask do
     end
 
     it 'returns the gem file path' do
-      expect(subject.build_gem(gem_file)).to be_eql('/pkg/anvil-2.0.0.gem')
+      expect(subject.build_gem(gem_file)).to include('/pkg/anvil-2.0.0.gem')
     end
   end
 

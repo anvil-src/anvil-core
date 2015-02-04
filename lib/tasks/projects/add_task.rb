@@ -7,14 +7,11 @@ module Projects
   class AddTask < Anvil::Task
     include Anvil::Task::Repositories
     description 'Adds a new project for anvil.'
-
-    parser do
-      arguments %w[name repository]
-    end
+    parser { arguments %w(name repository) }
 
     attr_reader :name, :repo
 
-    def initialize(name, repo, options = {})
+    def initialize(name, repo, _options = {})
       @name = name
       @repo = repo
     end

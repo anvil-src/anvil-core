@@ -37,7 +37,7 @@ describe Anvil::Cli do
         let(:argv) { %w[foo:dummy arg1 arg2 arg3 arg4 arg5 arg6 arg7] }
 
         it 'prints task list and exits' do
-          expect(subject).to receive(:help).with('foo:dummy')
+          expect(subject).to receive(:bad_arguments).with('foo:dummy')
           expect do
             subject.build_task(argv)
           end.to raise_error(SystemExit)
@@ -47,7 +47,7 @@ describe Anvil::Cli do
 
     context 'without a task name' do
       let(:argv)            { [] }
-      before                { expect(subject).to receive(:print_help) }
+      before                { expect(subject).to receive(:print_help_body) }
       it('prints the help') { subject.run argv }
     end
   end

@@ -5,16 +5,17 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'fakefs/spec_helpers'
 require 'rspec/its'
 require 'anvil'
 
 begin
   require 'codeclimate-test-reporter'
   CodeClimate::TestReporter.start
-rescue LoadError; end
+rescue LoadError
+  puts "Couldn't load the codeclimate test reporter"
+end
 
-Dir["#{File.dirname(__FILE__)}/support/fixtures/**/*.rb"].each { |f| require f }
+Dir["#{File.dirname(__FILE__)}/support/dummy_tasks/**/*.rb"].each { |f| require f }
 Dir["#{File.dirname(__FILE__)}/support/shared/**/*.rb"].each { |f| require f }
 
 RSpec.configure do |config|
@@ -26,7 +27,13 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = 'random'
-  config.before(:all) do
-    Anvil.module_eval { @logger = Logger.new(nil) }
+  config.before(:suite) { Anvil.module_eval { @logger = Logger.new(nil) } }
+  config.before do
+    FileUtils.rm_rf ConfigMock.base_path
+    FileUtils.mkdir_p ConfigMock.base_path
+    FileUtils.cp ConfigMock.config_file,
+                 ConfigMock.base_path
   end
+
+  config.after { FileUtils.rm_rf ConfigMock.base_path }
 end

@@ -5,7 +5,7 @@ require 'anvil/task'
 require 'rugged'
 
 module Anvil
-  # Manage loading and finding anvil tasks
+  # Manage loading and finding anvil tasks and config extensions
   class ExtensionsManager
     PATTERNS = {
       tasks: '/tasks/**/*_task.rb',

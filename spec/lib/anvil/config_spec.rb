@@ -1,24 +1,19 @@
 require 'spec_helper'
 
-describe Anvil::Config, fakefs: true do
+describe Anvil::Config do
   subject { Anvil::Config }
-  before  { Anvil::Config.reset }
+  before  { Anvil::Config.init }
 
-  its('github.user')  { should be_nil }
-  its('github.token') { should be_nil }
-
-  context 'with a config file', config: true do
-    its('github.user')  { should eq('dummy_user') }
-    its('github.token') { should eq('dummy_token') }
-  end
+  its('github.user')  { is_expected.to eq('dummy_user') }
+  its('github.token') { is_expected.to eq('dummy_token') }
 
   context '.init_base_path' do
     before  { Anvil::Config.send :init_base_path }
     subject { File }
 
-    it { should be_directory(Anvil::Config.base_path) }
-    it { should be_directory(Anvil::Config.base_tasks_path) }
-    it { should be_exists(Anvil::Config.base_config_path) }
-    it { should be_exists(Anvil::Config.base_projects_path) }
+    it { is_expected.to be_directory(Anvil::Config.base_path) }
+    it { is_expected.to be_directory(Anvil::Config.base_tasks_path) }
+    it { is_expected.to be_exists(Anvil::Config.base_config_path) }
+    it { is_expected.to be_exists(Anvil::Config.base_projects_path) }
   end
 end

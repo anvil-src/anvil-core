@@ -6,11 +6,11 @@ require 'tasks/help_task'
 module Anvil
   # Anvil command line interface
   class Cli
-    HELP = <<-HELP
+    HELP_HEADER = <<-HELP_HEADER
 Anvil is a tool for making your life easier.
 
 Available tasks:
-HELP
+HELP_HEADER
 
     # Runs a task or prints its help if it needs arguments
     #
@@ -19,11 +19,10 @@ HELP
     def run(argv)
       load_tasks
 
-      if argv.empty?
-        print_help
-      else
-        build_task(argv).run
-      end
+      return build_task(argv).run unless argv.empty?
+
+      print_help_header
+      print_help_body
     end
 
     def load_tasks
@@ -41,30 +40,42 @@ HELP
       klazz.new(*klazz.parse_options!(arguments))
     rescue NameError
       task_not_found(task_name)
-      exit(FALSE)
+      exit false
     rescue ArgumentError
-      help(task_name)
-      exit(FALSE)
+      bad_arguments(task_name)
+      exit false
     end
 
-    def task_not_found(task_name)
-      printf("Task '#{task_name}' not found\n\n")
-      print_help
+    def task_not_found(task_name = nil)
+      Anvil.logger.info "Task '#{task_name}' not found"
+      Anvil.logger.info('Maybe you mean one of the following') if task_name
+      Anvil.logger.info("\n")
+      print_help_body task_name
     end
 
-    def help(task_name)
-      printf("Wrong number of arguments.\n\n")
+    def bad_arguments(task_name)
+      Anvil.logger.info("Wrong number of arguments.\n")
       HelpTask.run(task_name)
     end
 
-    def print_help
-      printf('%s', HELP)
+    def print_help_body(task_name = nil)
+      task_list(task_name).each { |task| print_task_line(task) }
+    end
+
+    def task_list(task_name)
       tasks = Anvil::ExtensionsManager.tasks_by_name
-      tasks.each { |task| print_task_line(task) }
+
+      return tasks unless task_name
+      tasks.select { |task| task.to_s.underscore =~ /#{task_name}/ }
     end
 
     def print_task_line(task)
-      printf("%-20s %s\n", task.task_name, task.description)
+      message = format '%-20s %s', task.task_name, task.description
+      Anvil.logger.info message
+    end
+
+    def print_help_header
+      Anvil.logger.info HELP_HEADER
     end
   end
 end

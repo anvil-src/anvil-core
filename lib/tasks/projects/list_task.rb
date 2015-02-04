@@ -4,7 +4,7 @@ module Projects
   class ListTask < Anvil::Task
     description 'List the projects that anvil can manage.'
 
-    def initialize(options = {}); end
+    def initialize(_options = {}); end
 
     def task
       Dir.chdir(Anvil::Config.base_projects_path) { list_projects(projects) }

@@ -23,7 +23,7 @@ class Gem::ReleaseTask < Anvil::Task
     version  = bump
     gem_file = build
 
-    push gem_file, version
+    push gem_file, version.dup.to_s
   end
 
   protected

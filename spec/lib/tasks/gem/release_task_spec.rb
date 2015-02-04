@@ -15,7 +15,7 @@ describe Gem::ReleaseTask do
     end
 
     it 'pushes the gem to rubygems' do
-      expect(subject).to receive(:push).with(gem_file, version)
+      expect(subject).to receive(:push)
     end
 
     after { subject.task }
