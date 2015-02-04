@@ -11,7 +11,9 @@ describe Gem::BumpTask do
 
     it 'bumps the version and writes it' do
       expect(subject).to receive(:prepare_repo).and_return(true)
-      expect(subject).to receive(:write_version).and_return(true)
+      allow(subject).to receive(:write_version)
+                          .with(instance_of(String))
+                          .and_return(true)
 
       expect(subject.task).to eq('3.0.0')
     end

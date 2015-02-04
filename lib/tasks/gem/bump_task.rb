@@ -26,7 +26,7 @@ class Gem::BumpTask < Anvil::Task
   def task
     prepare_repo
     version = bump(read_version)
-    write_version version
+    write_version version.dup.to_s
 
     version
   end

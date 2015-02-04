@@ -4,6 +4,7 @@ require 'fileutils'
 
 describe Projects::AddTask do
   let(:repo_url) { 'git@github.com:account/repo' }
+  before  { Anvil::Config.send :init_base_path }
 
   subject { described_class.new('repo', 'account/repo') }
 
