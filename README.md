@@ -1,6 +1,6 @@
 # Anvil
 
-Anvil is a tool for the real craftspeople to build its own tools.
+Anvil is a tool for the real craftspeople to build their own tools.
 
 [![Build Status](https://travis-ci.org/anvil-src/anvil-core.png?branch=master)](https://travis-ci.org/anvil-src/anvil-core)
 [![Gem Version](https://badge.fury.io/rb/anvil-core.svg)](http://badge.fury.io/rb/anvil-core)
