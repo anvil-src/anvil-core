@@ -5,7 +5,7 @@ module Anvil
     # Tools to work with github repositories
     module Repositories
       def resolve_url(url)
-        if url =~ /^\w+\/\w+$/
+        if url =~ /^[\w\W]+\/[\w\W]+$/
           "git@github.com:#{url}"
         else
           url
