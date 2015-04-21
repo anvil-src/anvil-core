@@ -40,13 +40,15 @@ describe Gem::BumpTask do
 
   describe '#prepare_repo' do
     context 'on a clean repo' do
+      let(:git) { double(:git, current_branch: 'some-branch') }
+
       before do
         allow(subject).to receive(:clean?).and_return(true)
-        allow(subject).to receive(:git).and_return(double)
+        allow(subject).to receive(:git).and_return(git)
       end
 
-      it 'pulls' do
-        expect(subject.send(:git)).to receive(:pull)
+      it 'pulls from current branch' do
+        expect(git).to receive(:pull).with('origin', git.current_branch)
       end
 
       after { subject.send :prepare_repo }
@@ -61,5 +63,23 @@ describe Gem::BumpTask do
         end.to raise_error(Anvil::RepoNotClean)
       end
     end
+  end
+
+  describe '#commit_and_tag' do
+    let(:version) { '1.0.0' }
+    let(:git) { double(:git, current_branch: 'some-branch') }
+
+    before do
+      allow(subject).to receive(:git).and_return(git)
+    end
+
+    it 'commits and tag the current branch' do
+      expect(git).to receive(:add).with('VERSION')
+      expect(git).to receive(:commit).with("Bump version v#{version}")
+      expect(git).to receive(:add_tag).with("v#{version}")
+      expect(git).to receive(:push).with('origin', git.current_branch)
+    end
+
+    after { subject.send :commit_and_tag, version }
   end
 end
